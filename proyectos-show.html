@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos - Marta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { background: #0b0b0b; }
+    @font-face {
+      font-family: "Grift Black";
+      src: url("tipoografias/GRIFFT/Grift-Black.otf") format("opentype");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Grift Regular";
+      src: url("tipoografias/GRIFFT/Grift-Regular.otf") format("opentype");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Grift ExtraBold";
+      src: url("tipoografias/GRIFFT/Grift-ExtraBold.otf") format("opentype");
+      font-display: swap;
+    }
+    .font-grift {
+      font-family: "Grift Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .font-grift-regular {
+      font-family: "Grift Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .hover-grift-extrabold {
+      transition: font-family 200ms ease;
+    }
+    .hover-grift-extrabold:hover {
+      font-family: "Grift ExtraBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      color: #ffffff;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #ffffff;
+      opacity: 0.7;
+      font-weight: 700;
+    }
+    .project-row {
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      padding: 34px 0;
+    }
+    .project-row:first-child {
+      border-top: none;
+    }
+    .project-row + .project-row {
+      border-top: none;
+    }
+    .project-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="text-white font-body antialiased">
+  <header class="w-full">
+    <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+      <div class="flex-1 text-center"></div>
+      <div class="flex items-center gap-3">
+        <a href="about-me.html" class="pill-btn">Sobre mi</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full ml-0 mr-auto pl-6 sm:pl-10 pr-[40px] pb-16 font-body">
+    <div class="mt-6" style="margin-top: 10vh;">
+      <div class="project-row">
+        <a href="proyecto-Bon o Bon.html" class="project-link">
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">Social media</span>
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">&#x2198;</span>
+        </a>
+      </div>
+      <div class="project-row">
+        <a href="proyecto-BAYER.html" class="project-link">
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">Editorial</span>
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">&#x2198;</span>
+        </a>
+      </div>
+      <div class="project-row">
+        <a href="proyecto-AGRONOVA.html" class="project-link">
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">Dise&#241;o web</span>
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">&#x2198;</span>
+        </a>
+      </div>
+      <div class="project-row">
+        <a href="proyecto-VEGANIC.html" class="project-link">
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">Stands</span>
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">&#x2198;</span>
+        </a>
+      </div>
+      <div class="project-row">
+        <a href="proyecto1.html" class="project-link">
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">Branding</span>
+          <span class="text-3xl sm:text-4xl font-grift-regular hover-grift-extrabold" style="font-size: clamp(32px, 5vw, 64px); font-weight: 500;">&#x2198;</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+    })();
+  </script>
+  <div class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3">
+    <a href="index.html" aria-label="Inicio" class="flex items-center justify-center w-full h-full">
+      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+    </a>
+  </div>
+</body>
+</html>

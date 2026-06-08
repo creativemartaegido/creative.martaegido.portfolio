@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - Marta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'BlauerNueContact';
+      src: url("./tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("./tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("./tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'GriftMedium';
+      src: url('tipoografias/GRIFFT/Grift-Medium.otf') format('opentype');
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+    }
+    body { background: #F2EADF; }
+    .contenedor-principal {
+      display: grid;
+      align-items: start;
+      gap: 2.5rem;
+      padding-top: 120px;
+    }
+    .about-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .about-photo {
+      width: 100%;
+      height: 420px;
+      border-radius: 0;
+      overflow: hidden;
+      background: #e5e5e5;
+      opacity: 0;
+      transform: translateY(22px);
+      animation: aboutPhotoReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 24% 8%;
+      filter: grayscale(100%);
+      transform: scale(1.42);
+      transform-origin: center;
+    }
+    @keyframes aboutPhotoReveal {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .about-photo {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+    .about-copy {
+      display: flex;
+      flex-direction: column;
+      align-self: start;
+      height: 520px;
+      width: 100%;
+      min-width: 0;
+      text-align: left;
+      gap: 1rem;
+      padding-left: 0.5rem;
+      padding-right: 0.8rem;
+      position: relative;
+    }
+    .about-copy__progress {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+    }
+    .about-copy__progress-bar {
+      position: relative;
+      width: 2px;
+      height: calc(100% - 24px);
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.09);
+      overflow: hidden;
+    }
+    .about-copy__progress-fill {
+      position: absolute;
+      inset: 0 0 auto 0;
+      width: 100%;
+      height: 25%;
+      border-radius: inherit;
+      background: rgba(158, 42, 43, 0.58);
+      transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(0);
+    }
+    .about-copy__viewport {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+    .about-copy__slides {
+      position: relative;
+      height: 100%;
+    }
+    .about-copy__slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(100%);
+      pointer-events: none;
+      transition: opacity 1200ms cubic-bezier(0.19, 1, 0.22, 1), transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .about-copy__slide.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .about-copy__slide.is-exiting {
+      opacity: 0;
+      transform: translateY(-18%);
+      pointer-events: none;
+    }
+    .about-copy__title {
+      margin-bottom: 30px;
+      color: #9e2a2b;
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: left;
+    }
+    .about-copy__title--aptitudes {
+      margin-bottom: 18px;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .about-copy__title--soft-skills {
+      margin-bottom: 10px;
+    }
+    .about-copy p + p {
+      margin-top: 1rem;
+    }
+    .about-copy p {
+      font-size: 1rem;
+    }
+    .about-copy__measure {
+      max-width: 50ch;
+    }
+    .about-copy__slide--about {
+      justify-content: flex-start;
+    }
+    .about-copy__slide--cv,
+    .about-copy__slide--formacion {
+      padding-top: 0.25rem;
+    }
+    .about-copy__slide--formacion {
+      justify-content: flex-start;
+    }
+    .about-copy__slide--formacion .about-copy__title {
+      margin-bottom: 22px;
+    }
+    .about-copy__slide--aptitudes {
+      justify-content: flex-start;
+      padding-top: 0.25rem;
+    }
+    .about-copy__slide--aptitudes ul {
+      margin: 0.35rem 0 0;
+      padding-left: 0;
+      list-style: none;
+      display: inline-grid;
+      grid-template-columns: auto auto;
+      column-gap: 3.2rem;
+      row-gap: 0;
+      width: fit-content;
+    }
+    .about-copy__slide--aptitudes li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      break-inside: avoid;
+    }
+    .about-copy__slide--aptitudes li::before {
+      content: "✺";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #121212;
+      font-size: 0.92rem;
+      line-height: 1.9;
+    }
+    .about-copy__slide--aptitudes ul + .about-copy__title {
+      margin-top: 1.5rem;
+    }
+    .about-copy__cv-role {
+      margin: 0 0 0.35rem;
+      color: #9e2a2b;
+      font-family: 'GriftMedium', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: none;
+    }
+    .about-copy__cv-meta-line {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .about-copy__cv-meta {
+      margin: 0;
+      color: rgba(17, 17, 17, 0.72);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .about-copy__cv-separator {
+      color: rgba(17, 17, 17, 0.4);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .about-copy__cv-date {
+      margin: 0;
+      color: rgba(17, 17, 17, 0.42);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .about-copy__contacto {
+      padding-top: 2.5rem;
+      margin-top: auto;
+    }
+    .about-copy__experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .about-copy__experience-list > div > p {
+      max-width: 50ch;
+    }
+    .about-copy__slide--formacion > p {
+      max-width: 50ch;
+    }
+    .about-copy__slide--about p,
+    .about-copy__experience-list > div > p,
+    .about-copy__slide--formacion > p {
+      font-size: 0.94rem;
+    }
+    .about-copy__cv-role--separated {
+      margin-top: 1.75rem;
+    }
+    .about-contact-fixed {
+      position: static;
+      z-index: auto;
+      width: 100%;
+      padding: 0;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0);
+      text-align: left;
+    }
+    .about-contact-fixed p.about-contact-fixed__title {
+      margin: 0 0 0.55rem;
+      color: #9e2a2b;
+      font-family: 'BlauerNueContact', 'BlauerNueBold', sans-serif;
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: left;
+      font-synthesis: none;
+    }
+    .about-contact-fixed p {
+      margin: 0;
+      color: rgba(17, 17, 17, 0.62);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .about-contact-fixed a {
+      color: inherit;
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .about-contact-fixed p + p {
+      margin-top: 0.55rem;
+    }
+    @media (max-width: 1023px) {
+      .about-copy {
+        padding-right: 0.5rem;
+      }
+      .about-copy__progress {
+        display: none;
+      }
+      .about-side {
+        gap: 1rem;
+      }
+      .about-contact-fixed {
+        position: static;
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+    .about-copy p:last-of-type {
+      margin-bottom: 0;
+    }
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="text-black font-body antialiased">
+  <header class="w-full">
+    <div class="max-w-7xl mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+        <button class="pill-btn">Sobre mi</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 sm:px-10 pb-16">
+    <div class="contenedor-principal lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-20">
+      <div class="about-side">
+        <div class="about-photo">
+          <img src="imagenes/me-photo.jpeg" alt="Foto de Marta">
+        </div>
+        <div class="about-contact-fixed">
+          <p class="about-contact-fixed__title">Hola!</p>
+        </div>
+      </div>
+      <div class="about-copy">
+        <div class="about-copy__viewport">
+          <div class="about-copy__slides">
+          <section class="about-copy__slide about-copy__slide--about is-active" data-slide="0">
+            <h2 class="about-copy__title">un poco sobre mi</h2>
+            <p class="about-copy__measure">
+              Soy Marta Egido, dise&ntilde;adora gr&aacute;fica y creativa.
+            </p>
+            <p class="about-copy__measure">
+              Siempre he sentido adoraci&oacute;n por el arte, el dise&ntilde;o y sobre todo por hacer realidad cualquier idea que aparezca en una cabeza. Estoy navegando en el dise&ntilde;o gr&aacute;fico y UX desde hace una larga temporada, aprendiendo todos los procesos y ganando experiencia.
+            </p>
+            <p class="about-copy__measure">
+              Mi formaci&oacute;n es de dise&ntilde;o gr&aacute;fico, UX y dise&ntilde;o visual de videojuegos, tres entornos distintos pero en harmonia y relaci&oacute;n. Dise&ntilde;o, ilustraci&oacute;n, edici&oacute;n, UX y maquetaci&oacute;n.
+            </p>
+            <p class="about-copy__measure">
+              Durante estos 2 a&ntilde;os he aportado creatividad y esfuerzo en las compa&ntilde;ias donde he participado y como freelance, siempre he buscado disfrutar de los proyectos. Para m&iacute;, el dise&ntilde;o no es solo lo visual: es entender la idea detr&aacute;s y darle forma de la mejor manera posible.
+            </p>
+          </section>
+          <section class="about-copy__slide about-copy__slide--cv" data-slide="1">
+            <h2 class="about-copy__title">experiencia laboral</h2>
+            <div class="about-copy__experience-list">
+              <div>
+                <h3 class="about-copy__cv-role">I'ts Greener</h3>
+                <div class="about-copy__cv-meta-line">
+                  <p class="about-copy__cv-meta">Dise&ntilde;adora gr&aacute;fica</p>
+                  <span class="about-copy__cv-separator">|</span>
+                  <p class="about-copy__cv-date">2025-Actualmente</p>
+                </div>
+                <p>
+                  En <strong>Its Greener</strong> trabaj&eacute; como dise&ntilde;adora gr&aacute;fica y digital, desarrollando campa&ntilde;as creativas para grandes marcas y creando contenido pensado para destacar en redes sociales. Form&eacute; parte del proceso de construcci&oacute;n de nuevas marcas, trabajando su identidad desde cero, y dise&ntilde;&eacute; piezas editoriales para eventos y salas. Siendo muy enfocada a la creatividad, el ritmo de agencia y la adaptaci&oacute;n constante a diferentes estilos y p&uacute;blicos.
+                </p>
+              </div>
+              <div>
+                <h3 class="about-copy__cv-role">Port Gallery</h3>
+                <div class="about-copy__cv-meta-line">
+                  <p class="about-copy__cv-meta">Dise&ntilde;o gr&aacute;fico</p>
+                  <span class="about-copy__cv-separator">|</span>
+                  <p class="about-copy__cv-date">2019-2023</p>
+                </div>
+                <p>
+                  Durante mi experiencia en <strong>Port Gallery</strong>, trabaj&eacute; en el desarrollo de piezas gr&aacute;ficas como flyers, brochures, dise&ntilde;o web y portfolios de artista. Gestioné las redes sociales y creatividades de redes.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="about-copy__slide about-copy__slide--formacion" data-slide="2">
+            <h2 class="about-copy__title">formaci&oacute;n</h2>
+            <h3 class="about-copy__cv-role">M&aacute;ster en dise&ntilde;o Gr&aacute;fico</h3>
+            <div class="about-copy__cv-meta-line">
+              <p class="about-copy__cv-meta">BAU, Barcelona</p>
+              <span class="about-copy__cv-separator">|</span>
+              <p class="about-copy__cv-date">2024-2025</p>
+            </div>
+            <p>
+              Especializaci&oacute;n en creatividad, dise&ntilde;o gr&aacute;fico, editorial y v&iacute;deo. Proyecto final desarrollado para Razzmatazz en contacto directo con cliente real.
+            </p>
+            <h3 class="about-copy__cv-role about-copy__cv-role--separated">Curso en dise&ntilde;o de UX/UI</h3>
+            <div class="about-copy__cv-meta-line">
+              <p class="about-copy__cv-meta">Formaci&oacute;n complementaria</p>
+              <span class="about-copy__cv-separator">|</span>
+              <p class="about-copy__cv-date">2024</p>
+            </div>
+            <p>
+              Especializaci&oacute;n orientada a experiencia de usuario, arquitectura de la informaci&oacute;n y dise&ntilde;o de interfaces funcionales y coherentes.
+            </p>
+            <h3 class="about-copy__cv-role about-copy__cv-role--separated">Grado en creaci&oacute;n art&iacute;stica para videojuegos</h3>
+            <div class="about-copy__cv-meta-line">
+              <p class="about-copy__cv-meta">ENTI-UB</p>
+              <span class="about-copy__cv-separator">|</span>
+              <p class="about-copy__cv-date">2019-2022</p>
+            </div>
+            <p>
+              Enfoque en narrativa visual, desarrollo de entornos y construcci&oacute;n de universos gr&aacute;ficos aplicados a proyectos interactivos.
+            </p>
+          </section>
+          <section class="about-copy__slide about-copy__slide--aptitudes" data-slide="3">
+            <h2 class="about-copy__title about-copy__title--aptitudes">aptitudes</h2>
+            <h3 class="about-copy__cv-role">Software</h3>
+            <ul>
+              <li>Adobe Photoshop</li>
+              <li>Adobe Illustrator</li>
+              <li>Adobe Premiere</li>
+              <li>Adobe After Effects</li>
+              <li>Adobe InDesign</li>
+              <li>Figma</li>
+            </ul>
+            <h2 class="about-copy__title about-copy__title--aptitudes about-copy__title--soft-skills">Soft Skills</h2>
+            <ul>
+              <li>Organizada</li>
+              <li>Creativa</li>
+              <li>Pensamiento conceptual</li>
+              <li>Trabajo en equipo</li>
+              <li>Adaptabilidad</li>
+              <li>Detallista</li>
+            </ul>
+            <h2 class="about-copy__title about-copy__title--aptitudes">Idiomas</h2>
+            <ul>
+              <li>Castellano</li>
+              <li>Catalan</li>
+              <li>Inglés</li>
+            </ul>
+          </section>
+          </div>
+        </div>
+        <div class="about-copy__progress" aria-hidden="true">
+          <div class="about-copy__progress-bar">
+            <div class="about-copy__progress-fill" id="about-copy-progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    (function() {
+      const viewport = document.querySelector('.about-copy__viewport');
+      const slides = Array.from(document.querySelectorAll('[data-slide]'));
+      const progressBar = document.querySelector('#about-copy-progress');
+      if (!viewport || !slides.length) return;
+
+      let currentSlide = 0;
+      let isAnimating = false;
+      let touchStartY = 0;
+      const animationDuration = 1200;
+      const scrollThreshold = 36;
+      let debounceTimer = null;
+      const totalSlides = slides.length;
+
+      const syncProgress = () => {
+        if (!progressBar || totalSlides <= 1) return;
+        const step = 100 / totalSlides;
+        progressBar.style.height = `${step}%`;
+        progressBar.style.transform = `translateY(${currentSlide * 100}%)`;
+      };
+
+      const renderSlide = (index) => {
+        if (index < 0 || index >= slides.length) return;
+        const previousSlide = slides[currentSlide];
+        const nextSlide = slides[index];
+        if (!nextSlide || previousSlide === nextSlide) return;
+
+        if (previousSlide) {
+          previousSlide.classList.remove('is-active');
+          previousSlide.classList.add('is-exiting');
+        }
+
+        nextSlide.classList.remove('is-exiting');
+        nextSlide.classList.add('is-active');
+        currentSlide = index;
+        syncProgress();
+
+        window.setTimeout(() => {
+          slides.forEach((slide, slideIndex) => {
+            if (slideIndex !== currentSlide) {
+              slide.classList.remove('is-exiting');
+            }
+          });
+        }, animationDuration);
+      };
+
+      const moveSlide = (direction) => {
+        if (isAnimating) return;
+        const nextIndex = currentSlide + direction;
+        if (nextIndex < 0 || nextIndex >= slides.length) return;
+
+        isAnimating = true;
+        renderSlide(nextIndex);
+        window.setTimeout(() => {
+          isAnimating = false;
+        }, animationDuration);
+      };
+
+      const queueSlideMove = (direction) => {
+        if (isAnimating || debounceTimer) return;
+        debounceTimer = window.setTimeout(() => {
+          moveSlide(direction);
+          debounceTimer = null;
+        }, 90);
+      };
+
+      viewport.addEventListener(
+        'wheel',
+        (event) => {
+          if (Math.abs(event.deltaY) < scrollThreshold) return;
+          event.preventDefault();
+          queueSlideMove(event.deltaY > 0 ? 1 : -1);
+        },
+        { passive: false }
+      );
+
+      viewport.addEventListener(
+        'touchstart',
+        (event) => {
+          touchStartY = event.touches[0].clientY;
+        },
+        { passive: true }
+      );
+
+      viewport.addEventListener(
+        'touchmove',
+        (event) => {
+          const touchCurrentY = event.touches[0].clientY;
+          const deltaY = touchStartY - touchCurrentY;
+          if (Math.abs(deltaY) < scrollThreshold) return;
+          event.preventDefault();
+          queueSlideMove(deltaY > 0 ? 1 : -1);
+          touchStartY = touchCurrentY;
+        },
+        { passive: false }
+      );
+
+      renderSlide(0);
+    })();
+  </script>
+  <div class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3">
+    <a href="index.html" aria-label="Inicio" class="flex items-center justify-center w-full h-full">
+      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,788 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veganic stand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    :root {
+      --orange: #f24a2a;
+      --ink: #121212;
+      --page-bg: #ffffff;
+    }
+    html, body {
+      overflow-x: hidden;
+    }
+    body {
+      background: #F2EADF;
+    }
+    .project-title {
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-synthesis: none;
+    }
+
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      position: relative;
+      height: 600px;
+      border-radius: 36px;
+      background: var(--orange);
+      overflow: hidden;
+    }
+
+    .badge-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 140px;
+    }
+
+    .badge-card {
+      border-radius: 28px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card.portrait {
+      aspect-ratio: 9 / 16;
+    }
+
+    .badge-card.black {
+      background: #0d0d0d;
+      color: #ffffff;
+      justify-content: flex-start;
+      padding-left: 56px;
+    }
+
+    .badge-card.orange {
+      background: var(--orange);
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-star {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-meta {
+      position: absolute;
+      right: 0;
+      top: -42px;
+      z-index: 2;
+      text-align: right;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .project-meta {
+      margin-top: 1rem;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .badge-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .showcase-card {
+      border-radius: 28px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .interactive-gallery {
+      display: flex;
+      align-items: flex-start;
+      gap: 56px;
+      width: 100%;
+      margin-top: 64px;
+      padding-left: 5%;
+      padding-right: 5%;
+      box-sizing: border-box;
+    }
+    .gallery-copy {
+      flex: 0 0 280px;
+      max-width: 280px;
+      height: 470px;
+      padding-top: 10px;
+      padding-bottom: 78px;
+      margin-left: 210px;
+      position: relative;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: galleryCopyReveal 900ms cubic-bezier(0.19, 1, 0.22, 1) 120ms forwards;
+    }
+    .gallery-copy h2 {
+      margin: 0 0 18px 0;
+      font-size: 46px;
+      line-height: 1.1;
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      color: #9e2a2b;
+    }
+    .gallery-copy__subtitle {
+      display: block;
+      margin: -6px 0 16px !important;
+      color: rgba(17, 17, 17, 0.72);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .gallery-copy p {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555555;
+    }
+    .gallery-copy p + p {
+      margin-top: 1.4rem;
+    }
+    @keyframes galleryCopyReveal {
+      from {
+        opacity: 0;
+        transform: translateY(48px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .gallery-images-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: min(62vw, 980px);
+      min-width: 860px;
+      max-width: none;
+      margin-left: auto;
+      margin-right: 48px;
+      padding-right: 0;
+    }
+    .gallery-viewer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .gallery-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 220ms ease;
+    }
+    .gallery-viewer img.is-fading {
+      opacity: 0.2;
+    }
+    .gallery-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+    }
+    .gallery-switcher {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(242, 234, 223, 0.88);
+      backdrop-filter: blur(8px);
+    }
+    .gallery-switcher__dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(18, 18, 18, 0.18);
+      border: 0;
+      display: inline-block;
+      padding: 0;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    a.gallery-switcher__dot {
+      cursor: pointer;
+    }
+    .gallery-switcher__dot:hover {
+      background: rgba(18, 18, 18, 0.42);
+      transform: translateY(-1px);
+    }
+    .gallery-switcher__dot.is-active {
+      background: rgba(18, 18, 18, 0.72);
+    }
+    .gallery-thumbs {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+    .gallery-thumb {
+      flex: 1 1 0;
+      aspect-ratio: 3.4 / 2;
+      position: relative;
+      border: 2px solid var(--page-bg);
+      border-radius: 8px;
+      padding: 0;
+      cursor: pointer;
+      overflow: hidden;
+      background: #ffffff;
+      transition: border-color 0.3s ease;
+    }
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+      transition: background 0.25s ease;
+      pointer-events: none;
+    }
+    .gallery-thumb:hover,
+    .gallery-thumb.is-active {
+      border-color: #4a7a4c;
+    }
+    .gallery-thumb:hover::after {
+      background: rgba(0, 0, 0, 0.18);
+    }
+    .gallery-thumb.is-active::after {
+      background: transparent;
+    }
+    .swatch-card {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      border-radius: 28px;
+    }
+
+    .swatch-band {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px;
+      font-weight: 600;
+    }
+
+    .swatch-band.gray {
+      background: #cccccc;
+      color: #2a2a2a;
+    }
+
+    .swatch-band.black {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .swatch-band.orange {
+      background: #f34a29;
+      color: #ffffff;
+    }
+
+    .phone-mock {
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      width: 160px;
+      height: 300px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 5px solid #0d0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .phone-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 20px;
+      background: #0d0d0d;
+      border-radius: 0 0 14px 14px;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 22px 14px 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    @media (min-width: 768px) {
+      .badge-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.5625fr);
+        align-items: stretch;
+      }
+      .showcase-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .interactive-gallery {
+        flex-direction: column;
+        gap: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .gallery-copy {
+        flex-basis: auto;
+        max-width: none;
+        height: auto;
+        padding-bottom: 0;
+        display: block;
+      }
+      .gallery-switcher {
+        position: static;
+        margin-top: 18px;
+      }
+      .gallery-images-block {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        padding-right: 0;
+      }
+      .gallery-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .gallery-thumbs {
+        flex-wrap: wrap;
+      }
+      .gallery-thumb {
+        flex: 1 1 calc(50% - 4px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .badge-card {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+      }.badge-logo {
+        font-size: 38px;
+      }
+      .badge-star {
+        width: 80px;
+        height: 80px;
+      }
+      .showcase-card {
+        height: 240px;
+        border-radius: 22px;
+      }
+      .phone-mock {
+        right: 12%;
+        width: 130px;
+        height: 240px;
+      }
+    }
+
+    .hero-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 4px solid var(--ink);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone.dark {
+      background: #121212;
+      border-color: #0d0d0d;
+    }
+
+    .phone.dark::before {
+      background: #1a1a1a;
+    }
+
+    .phone .screen {
+      position: absolute;
+      inset: 18px 14px 20px;
+      border-radius: 22px;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+
+    .phone.light .screen {
+      background: #f8f8f8;
+    }
+
+    .phone .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
+    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
+    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
+    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
+    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
+    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
+
+    .phone-6 .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 18px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-card { height: 500px; }
+      .phone { width: 150px; height: 300px; }
+      .phone-1 { left: 20px; top: -80px; }
+      .phone-2 { left: 200px; top: -90px; }
+      .phone-3 { left: 380px; top: -70px; }
+      .phone-4 { right: 180px; top: -90px; }
+      .phone-5 { right: 10px; top: -70px; }
+      .phone-6 { bottom: -140px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { height: 460px; }
+      .phone { width: 130px; height: auto;
+        aspect-ratio: 1 / 1; }
+      .phone-1 { left: 10px; top: -90px; }
+      .phone-2 { left: 150px; top: -100px; }
+      .phone-3 { left: 290px; top: -90px; }
+      .phone-4 { right: 130px; top: -110px; }
+      .phone-5 { right: 0; top: -90px; }
+      .phone-6 { bottom: -150px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { height: 420px; border-radius: 28px; }
+      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
+      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
+      .hero-mark { font-size: 52px; }
+    }
+
+  </style>
+</head>
+  <body class="text-black font-body antialiased min-h-screen">
+  <a href="index.html" class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+    <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+  </a>
+  <div class="w-full px-5 py-6">
+    <header class="w-full">
+      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+        <a href="index.html" class="pill-btn hidden">Home</a>
+        <div class="flex-1 text-center"></div>
+      <div class="flex items-center gap-3">
+          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+          <a href="about-me.html" class="pill-btn">Sobre mi</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="interactive-gallery">
+      <div class="gallery-copy">
+        <h2 id="gallery-project-title">Stand de Veganic</h2>
+        <p id="gallery-project-subtitle" class="gallery-copy__subtitle">Fruit Attraction 2025</p>
+        <p id="gallery-project-description-1">
+          Desarrollo y diseño de los elementos visuales para el stand de Veganic <br>en Fruit Attraction 2025, una de las ferias internacionales más relevantes del sector hortofrutícola.
+        </p>
+        <p id="gallery-project-description-2">
+          Ganadora del premio al mejor stand de la feria, otorgado por jurado y visitantes.
+        </p>
+        <div class="gallery-switcher" aria-label="Cambiar de stand">
+          <button class="gallery-switcher__dot is-active" type="button" data-stand="veganic" aria-label="Ver stand de Veganic"></button>
+          <button class="gallery-switcher__dot" type="button" data-stand="bonobon" aria-label="Ver stand de Bon o Bon"></button>
+        </div>
+      </div>
+      <div class="gallery-images-block">
+        <div class="gallery-viewer">
+          <img
+            id="gallery-main-image"
+            src="imagenes/VEGANIC/main.jpg"
+            alt="Veganic - vista principal de la galería"
+          >
+        </div>
+        <div class="gallery-footer">
+          <div class="gallery-thumbs" id="gallery-thumbs" aria-label="Miniaturas de la galería">
+            <button class="gallery-thumb is-active" type="button" data-gallery-image="imagenes/VEGANIC/main.jpg" data-gallery-alt="Veganic - vista principal del stand">
+              <img src="imagenes/VEGANIC/main.jpg" alt="Miniatura Veganic principal">
+            </button>
+            <button class="gallery-thumb" type="button" data-gallery-image="imagenes/VEGANIC/fruit-atraction2025_191.jpg" data-gallery-alt="Veganic - vista de stand 1">
+              <img src="imagenes/VEGANIC/fruit-atraction2025_191.jpg" alt="Miniatura Veganic 1">
+            </button>
+            <button class="gallery-thumb" type="button" data-gallery-image="imagenes/VEGANIC/fruit-atraction2025_193.jpg" data-gallery-alt="Veganic - vista de stand 2">
+              <img src="imagenes/VEGANIC/fruit-atraction2025_193.jpg" alt="Miniatura Veganic 2">
+            </button>
+            <button class="gallery-thumb" type="button" data-gallery-image="imagenes/VEGANIC/fruit-atraction2025_201.jpg" data-gallery-alt="Veganic - vista de stand 3">
+              <img src="imagenes/VEGANIC/fruit-atraction2025_201.jpg" alt="Miniatura Veganic 3">
+            </button>
+            <button class="gallery-thumb" type="button" data-gallery-image="imagenes/VEGANIC/PERS VEGANIC V6 GRAFICA OK0004.jpg" data-gallery-alt="Veganic - gráfica promocional">
+              <img src="imagenes/VEGANIC/PERS VEGANIC V6 GRAFICA OK0004.jpg" alt="Miniatura Veganic gráfica">
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script>
+    (function() {
+      const projectTitle = document.querySelector("#gallery-project-title");
+      const projectSubtitle = document.querySelector("#gallery-project-subtitle");
+      const projectDescription1 = document.querySelector("#gallery-project-description-1");
+      const projectDescription2 = document.querySelector("#gallery-project-description-2");
+      const mainImage = document.querySelector("#gallery-main-image");
+      const thumbsContainer = document.querySelector("#gallery-thumbs");
+      const standDots = Array.from(document.querySelectorAll("[data-stand]"));
+      if (!mainImage || !thumbsContainer || !standDots.length || !projectTitle || !projectSubtitle || !projectDescription1 || !projectDescription2) return;
+
+      const standStates = {
+        veganic: {
+          title: "Stand de Veganic",
+          subtitle: "Fruit Attraction 2025",
+          description1: "Desarrollo y diseño de los elementos visuales para el stand de Veganic en Fruit Attraction 2025, una de las ferias internacionales más relevantes del sector hortofrutícola.",
+          description2: "Ganadora del premio al mejor stand de la feria, otorgado por jurado y visitantes.",
+          items: [
+            { image: "imagenes/VEGANIC/main.jpg", alt: "Veganic - vista principal del stand", thumbAlt: "Miniatura Veganic principal" },
+            { image: "imagenes/VEGANIC/fruit-atraction2025_191.jpg", alt: "Veganic - vista de stand 1", thumbAlt: "Miniatura Veganic 1" },
+            { image: "imagenes/VEGANIC/fruit-atraction2025_193.jpg", alt: "Veganic - vista de stand 2", thumbAlt: "Miniatura Veganic 2" },
+            { image: "imagenes/VEGANIC/fruit-atraction2025_201.jpg", alt: "Veganic - vista de stand 3", thumbAlt: "Miniatura Veganic 3" },
+            { image: "imagenes/VEGANIC/PERS VEGANIC V6 GRAFICA OK0004.jpg", alt: "Veganic - gráfica promocional", thumbAlt: "Miniatura Veganic gráfica" }
+          ]
+        },
+        bonobon: {
+          title: "Stand de Bon o Bon",
+          subtitle: "Activación de marca",
+          description1: "Desarrollo visual para el universo expositivo de Bon o Bon, con foco en presencia de marca, materiales promocionales y puesta en escena para activaciones.",
+          description2: "Selección de piezas y soportes aplicados a un lenguaje más pop, directo y reconocible dentro del espacio de marca.",
+          items: [
+            { image: "imagenes/bon o bon/stand 6.jpeg", alt: "Bon o Bon - stand 6", thumbAlt: "Miniatura Bon o Bon stand 6" },
+            { image: "imagenes/intro/bonOBon v2 copia.jpg", alt: "Bon o Bon - vista principal del stand", thumbAlt: "Miniatura Bon o Bon principal" },
+            { image: "imagenes/bon o bon/stand 5.jpeg", alt: "Bon o Bon - stand 5", thumbAlt: "Miniatura Bon o Bon stand 5" },
+            { image: "imagenes/bon o bon/stand 2.jpeg", alt: "Bon o Bon - stand 2", thumbAlt: "Miniatura Bon o Bon stand 2" },
+            { image: "imagenes/bon o bon/stand 4.jpeg", alt: "Bon o Bon - stand 4", thumbAlt: "Miniatura Bon o Bon stand 4" }
+          ]
+        }
+      };
+
+      const autoplayDelay = 2600;
+      let autoplayId = null;
+      let thumbs = [];
+      let currentStand = "veganic";
+
+      const activateThumb = (thumb) => {
+        const nextSrc = thumb.dataset.galleryImage;
+        const nextAlt = thumb.dataset.galleryAlt || mainImage.alt;
+        if (!nextSrc) return;
+
+        thumbs.forEach((item) => item.classList.remove("is-active"));
+        thumb.classList.add("is-active");
+
+        if (nextSrc === mainImage.getAttribute("src")) {
+          mainImage.alt = nextAlt;
+          return;
+        }
+
+        mainImage.classList.add("is-fading");
+        window.setTimeout(() => {
+          mainImage.src = nextSrc;
+          mainImage.alt = nextAlt;
+          mainImage.classList.remove("is-fading");
+        }, 120);
+      };
+
+      const buildThumb = (item, isActive) => {
+        const button = document.createElement("button");
+        button.className = `gallery-thumb${isActive ? " is-active" : ""}`;
+        button.type = "button";
+        button.dataset.galleryImage = item.image;
+        button.dataset.galleryAlt = item.alt;
+
+        const image = document.createElement("img");
+        image.src = item.image;
+        image.alt = item.thumbAlt;
+        button.appendChild(image);
+
+        button.addEventListener("click", () => {
+          activateThumb(button);
+          scheduleAutoplay();
+        });
+
+        return button;
+      };
+
+      const renderStand = (standKey) => {
+        const selectedStand = standStates[standKey];
+        if (!selectedStand) return;
+
+        currentStand = standKey;
+        projectTitle.textContent = selectedStand.title;
+        projectSubtitle.textContent = selectedStand.subtitle;
+        projectDescription1.textContent = selectedStand.description1;
+        projectDescription2.textContent = selectedStand.description2;
+
+        thumbsContainer.innerHTML = "";
+        thumbs = selectedStand.items.map((item, index) => buildThumb(item, index === 0));
+        thumbs.forEach((thumb) => thumbsContainer.appendChild(thumb));
+
+        mainImage.classList.add("is-fading");
+        window.setTimeout(() => {
+          mainImage.src = selectedStand.items[0].image;
+          mainImage.alt = selectedStand.items[0].alt;
+          mainImage.classList.remove("is-fading");
+        }, 120);
+
+        standDots.forEach((dot) => {
+          dot.classList.toggle("is-active", dot.dataset.stand === standKey);
+        });
+      };
+
+      const scheduleAutoplay = () => {
+        if (autoplayId) window.clearInterval(autoplayId);
+        autoplayId = window.setInterval(() => {
+          const currentIndex = thumbs.findIndex((thumb) => thumb.classList.contains("is-active"));
+          const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % thumbs.length : 0;
+          activateThumb(thumbs[nextIndex]);
+        }, autoplayDelay);
+      };
+
+      standDots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          if (dot.dataset.stand === currentStand) return;
+          renderStand(dot.dataset.stand);
+          scheduleAutoplay();
+        });
+      });
+
+      renderStand(currentStand);
+      scheduleAutoplay();
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marta Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bebas+Neue&family=Roboto+Condensed:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            bebas: ['Bebas Neue', 'Inter', 'system-ui', 'sans-serif'],
+            roboto: ['Roboto Condensed', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --text-transform-style: lowercase;
+      --font-secondary: "Grift", sans-serif;
+      /* Edita aquí las tipografías de la animación "hola!" */
+      --hola-font-1: "Grift", "Inter", "Helvetica Neue", Arial, sans-serif;
+      --hola-font-2: "Balney", "Arial Black", sans-serif;
+      --hola-font-3: "Trovical Reg", "Arial Narrow", sans-serif;
+      --hola-font-4: "CasualHuman Bold", "Inter", sans-serif;
+    }
+    body { background: #F2EADF; overflow-y: hidden; }
+    .fade-slide { opacity: 0; transition: opacity 1s ease; }
+    .fade-slide.active { opacity: 1; }
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: "Grift";
+      src: url("tipoografias/GRIFFT/Grift-Black.otf") format("opentype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Grift";
+      src: url("tipoografias/GRIFFT/Grift-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Blauer Nue";
+      src: url("tipoografias/blauer Nue/BlauerNue-Medium.woff2") format("woff2"),
+           url("tipoografias/blauer Nue/BlauerNue-Medium.woff") format("woff"),
+           url("tipoografias/blauer Nue/BlauerNue-Medium.otf") format("opentype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Blauer Nue";
+      src: url("tipoografias/blauer Nue/BlauerNue-ExtraBold.woff2") format("woff2"),
+           url("tipoografias/blauer Nue/BlauerNue-ExtraBold.woff") format("woff"),
+           url("tipoografias/blauer Nue/BlauerNue-ExtraBold.otf") format("opentype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Balney";
+      src: url("tipoografias/Balney/Balney.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Trovical Reg";
+      src: url("tipoografias/Trovical/Trovical Reg.otf.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "CasualHuman Bold";
+      src: url("tipoografias/CASUAL/CasualHuman-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding: 60px 0;
+    }
+    .carousel__track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: carousel-scroll 24s linear infinite;
+      will-change: transform;
+    }
+    .carousel__group {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding-right: 40px;
+    }
+    .carousel__item {
+      flex: 0 0 auto;
+      width: 420px;
+      height: 280px;
+      border-radius: 8px;
+      background: #111111;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .carousel__item:nth-child(odd) {
+      width: 350px;
+      height: 250px;
+    }
+    .carousel__item:nth-child(even) {
+      width: 500px;
+      height: 330px;
+    }
+    .carousel__item:nth-child(3n) {
+      transform: rotate(-2deg);
+      border-radius: 8px;
+    }
+    .carousel__item:nth-child(4n) {
+      transform: rotate(1.5deg);
+    }
+    .carousel__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+    .carousel__item:has(img) {
+      background: transparent;
+    }
+    .carousel__item img[alt="Prueba Bar"] {
+      object-position: center 24%;
+    }
+    .carousel__item--tosta {
+      height: 300px;
+    }
+    .footer-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: end;
+      padding: 0 6%;
+      color: #111111;
+      text-transform: none;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .footer-content h1,
+    .footer-content h2 {
+      margin: 0;
+    }
+    .left-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .welcome-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      margin: 0;
+      padding: 0;
+    }
+    .left-box h1 {
+      font-family: "Grift", "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 800;
+      font-size: clamp(72px, 13vw, 220px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: #9e2a2b;
+    }
+    .left-box h2,
+    .right-box h2 {
+      font-family: var(--font-secondary);
+      font-weight: 400;
+      font-size: clamp(24px, 4vw, 60px);
+      line-height: 1;
+      margin-top: 0;
+      letter-spacing: -0.01em;
+      text-transform: var(--text-transform-style);
+      transition: text-transform 0.3s ease;
+      color: #9e2a2b;
+    }
+    .left-box h2 {
+      font-size: clamp(20px, 3.2vw, 48px);
+    }
+    #hola,
+    .welcome-copy h2 {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: left;
+    }
+    .right-box {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      text-align: right;
+      padding-left: 0;
+      padding-top: 12px;
+    }
+    .hola-wrapper {
+      display: block;
+      width: auto;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      overflow: visible;
+      white-space: nowrap;
+    }
+    .hola-text {
+      display: inline-block;
+      width: auto;
+      letter-spacing: 0;
+      font-kerning: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    #hola {
+      display: inline-block;
+      padding: 18px 28px 20px 12px;
+      margin: -18px -28px -20px -12px;
+      cursor: default;
+    }
+    #hola.is-animating .hola-text {
+      white-space: nowrap;
+    }
+    @keyframes carousel-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    body.is-intro-active {
+      overflow: hidden;
+    }
+    .page-shell {
+      position: relative;
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(32px) scale(0.985);
+      filter: blur(10px);
+      transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 900ms ease;
+    }
+    body.intro-reveal .page-shell {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #171717;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: transform 800ms cubic-bezier(0.76, 0, 0.24, 1),
+                  visibility 0s linear 800ms;
+    }
+    .intro-backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+      opacity: 0.9;
+    }
+    .intro-word {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: min(42vw, 320px);
+      padding: 0 4vw;
+      user-select: none;
+      pointer-events: none;
+    }
+    .intro-logo {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transform: scale(1);
+      will-change: opacity;
+      transition: opacity 450ms ease;
+    }
+    body.intro-start .intro-logo {
+      opacity: 1;
+    }
+    .intro-copy {
+      margin-top: 22px;
+      font-family: var(--font-secondary);
+      font-weight: 400;
+      font-size: clamp(22px, 2.8vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: var(--text-transform-style);
+      color: #ffffff;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 450ms ease 120ms, transform 450ms ease 120ms;
+      text-align: center;
+      white-space: nowrap;
+    }
+    body.intro-start .intro-copy {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    body.intro-exit .intro-logo {
+      transform: translateY(0) scale(1);
+      transition-duration: 0ms;
+    }
+    body.intro-finished .intro-overlay {
+      transform: translateY(-100%);
+      visibility: hidden;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .page-shell,
+      .intro-overlay,
+      .intro-logo,
+      .intro-copy {
+        transition: none !important;
+      }
+    }
+  </style>
+  <noscript>
+    <style>
+      .intro-overlay { display: none !important; }
+      .page-shell {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    </style>
+  </noscript>
+</head>
+<body class="bg-[#F2EADF] text-black font-body antialiased overflow-x-hidden is-intro-active">
+  <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+    <div class="intro-backdrop"></div>
+    <div class="intro-word" aria-label="Logo Marta">
+      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="intro-logo">
+      <div class="intro-copy">benvenid@ a mi portfolio</div>
+    </div>
+  </div>
+
+  <div class="page-shell" id="page-shell">
+    <header class="w-full">
+      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+        <a href="index.html" class="pill-btn hidden">Home</a>
+        <div class="flex-1 text-center"></div>
+        <div class="flex items-center gap-3">
+          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+          <a href="about-me.html" class="pill-btn">Sobre mi</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="projects" class="relative flex items-start justify-center pt-16" style="height: calc(100vh - 96px);">
+      <section class="carousel">
+        <div class="carousel__track">
+          <div class="carousel__group">
+            <div class="carousel__item">
+              <img src="imagenes/intro/prueba bar.png" alt="Prueba Bar">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/macbook.jpg" alt="Macbook">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/bloomy.jpg" alt="Bloomy">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/bonOBon v2 copia.jpg" alt="Bon o Bon">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/image-gen.jpg" alt="Image Gen">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/social media.jpg" alt="Social Media">
+            </div>
+          </div>
+          <div class="carousel__group" aria-hidden="true">
+            <div class="carousel__item">
+              <img src="imagenes/intro/prueba bar.png" alt="Prueba Bar">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/macbook.jpg" alt="Macbook">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/bloomy.jpg" alt="Bloomy">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/bonOBon v2 copia.jpg" alt="Bon o Bon">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/image-gen.jpg" alt="Image Gen">
+            </div>
+            <div class="carousel__item">
+              <img src="imagenes/intro/social media.jpg" alt="Social Media">
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="footer-content" aria-hidden="true">
+        <div class="left-box">
+          <div class="welcome-copy">
+            <h1 id="hola"><span class="hola-wrapper"><span class="hola-text">hola!</span></span></h1>
+            <h2>bienvenid@ a mi portfolio</h2>
+          </div>
+        </div>
+        <div></div>
+        <div class="right-box"></div>
+      </div>
+    </main>
+
+    <div class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3">
+      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const body = document.body;
+      const overlay = document.querySelector("#intro-overlay");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!body || !overlay) return;
+
+      const finishIntro = () => {
+        body.classList.add("intro-reveal", "intro-finished");
+        body.classList.remove("is-intro-active");
+        window.setTimeout(() => {
+          overlay.remove();
+        }, 825);
+      };
+
+      if (prefersReducedMotion) {
+        finishIntro();
+        return;
+      }
+
+      const startIntro = () => {
+        body.classList.add("intro-start");
+
+        window.setTimeout(() => {
+          body.classList.add("intro-exit");
+        }, 1150);
+
+        window.setTimeout(() => {
+          finishIntro();
+        }, 1625);
+      };
+
+      if (document.readyState === "complete") {
+        window.setTimeout(startIntro, 120);
+      } else {
+        window.addEventListener("load", () => {
+          window.setTimeout(startIntro, 120);
+        }, { once: true });
+      }
+    })();
+
+    (function() {
+      const hola = document.querySelector("#hola");
+      const holaText = hola?.querySelector(".hola-text");
+      if (!hola || !holaText) return;
+
+      const holaFrames = [
+        { font: "var(--hola-font-1)" },
+        { font: "var(--hola-font-2)" },
+        { font: "var(--hola-font-3)" },
+        { font: "var(--hola-font-4)" }
+      ];
+
+      const stepDuration = 200;
+      let currentFrame = 0;
+      let animationId = null;
+      const renderFrame = (index) => {
+        const frame = holaFrames[index];
+        holaText.textContent = "hola!";
+        holaText.style.fontFamily = frame.font;
+      };
+
+      const stopAnimation = () => {
+        if (animationId) {
+          window.clearTimeout(animationId);
+          animationId = null;
+        }
+        hola.classList.remove("is-animating");
+        currentFrame = 0;
+        renderFrame(currentFrame);
+      };
+
+      const scheduleNextFrame = () => {
+        animationId = window.setTimeout(() => {
+          if (!hola.matches(":hover")) {
+            stopAnimation();
+            return;
+          }
+
+          currentFrame = (currentFrame + 1) % holaFrames.length;
+          renderFrame(currentFrame);
+          scheduleNextFrame();
+        }, stepDuration);
+      };
+
+      const startAnimation = () => {
+        stopAnimation();
+        hola.classList.add("is-animating");
+        scheduleNextFrame();
+      };
+
+      renderFrame(currentFrame);
+
+      hola.addEventListener("mouseenter", startAnimation);
+      hola.addEventListener("mouseleave", stopAnimation);
+    })();
+
+    (function() {
+      const links = Array.from(document.querySelectorAll('a[href="#about"], a[href="#projects"]'));
+      const duration = 500;
+      const offset = 20;
+      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+      const smoothScroll = (hash) => {
+        const target = document.querySelector(hash);
+        if (!target) return;
+        const start = window.scrollY || window.pageYOffset;
+        const end = target.getBoundingClientRect().top + start - offset;
+        const startTime = performance.now();
+
+        const step = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const y = start + (end - start) * easeOutCubic(progress);
+          window.scrollTo(0, y);
+          if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const hash = link.getAttribute('href');
+          smoothScroll(hash);
+          history.replaceState(null, '', hash);
+        });
+      });
+    })();
+
+    (function() {
+    })();
+  </script>
+</body>
+</html>

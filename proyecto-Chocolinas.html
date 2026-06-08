@@ -1,0 +1,851 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veganic stand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    :root {
+      --orange: #f24a2a;
+      --ink: #121212;
+      --page-bg: #ffffff;
+    }
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    body {
+      background: #F2EADF;
+    }
+    .project-title {
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-synthesis: none;
+    }
+
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      position: relative;
+      height: 600px;
+      border-radius: 36px;
+      background: var(--orange);
+      overflow: hidden;
+    }
+
+    .badge-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 140px;
+    }
+
+    .badge-card {
+      border-radius: 28px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card.portrait {
+      aspect-ratio: 9 / 16;
+    }
+
+    .badge-card.black {
+      background: #0d0d0d;
+      color: #ffffff;
+      justify-content: flex-start;
+      padding-left: 56px;
+    }
+
+    .badge-card.orange {
+      background: var(--orange);
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-star {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-meta {
+      position: absolute;
+      right: 0;
+      top: -42px;
+      z-index: 2;
+      text-align: right;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .project-meta {
+      margin-top: 1rem;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .badge-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .showcase-card {
+      border-radius: 28px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .interactive-gallery {
+      display: grid;
+      grid-template-columns: 490px minmax(0, 1fr);
+      align-items: start;
+      gap: 56px;
+      width: 100%;
+      margin-top: 64px;
+      margin-bottom: 88px;
+      padding-left: 5%;
+      padding-right: 5%;
+      box-sizing: border-box;
+    }
+    .gallery-copy {
+      flex: 0 0 280px;
+      width: 280px;
+      max-width: 280px;
+      padding-top: 10px;
+      margin-left: 210px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: galleryCopyReveal 900ms cubic-bezier(0.19, 1, 0.22, 1) 120ms forwards;
+    }
+    .gallery-copy h2 {
+      margin: 0 0 18px 0;
+      font-size: 46px;
+      line-height: 1.1;
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      color: #9e2a2b;
+    }
+    .gallery-copy__subtitle {
+      display: block;
+      margin: -6px 0 16px !important;
+      color: rgba(17, 17, 17, 0.72);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .gallery-copy p {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555555;
+    }
+    .gallery-copy p + p {
+      margin-top: 1.4rem;
+    }
+    .gallery-copy__arrow {
+      margin-top: auto;
+      align-self: flex-start;
+      min-width: 58px;
+    }
+    @keyframes galleryCopyReveal {
+      from {
+        opacity: 0;
+        transform: translateY(48px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes galleryThumbRise {
+      from {
+        opacity: 0;
+        transform: translateY(36px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .gallery-images-block {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: min(66vw, 1080px);
+      min-width: 920px;
+      max-width: none;
+      margin-left: auto;
+      margin-right: 48px;
+      padding-right: 0;
+    }
+    .gallery-viewer {
+      width: 100%;
+      aspect-ratio: 16 / 7.4;
+      position: sticky;
+      top: 88px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .gallery-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 220ms ease;
+    }
+    .gallery-viewer img.is-fading {
+      opacity: 0.2;
+    }
+    .gallery-footer {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding-left: 210px;
+      padding-right: 48px;
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      width: 100%;
+    }
+    .gallery-thumb {
+      position: relative;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .gallery-thumb--post {
+      aspect-ratio: 4 / 5;
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .gallery-thumb--intro {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+    .gallery-thumb--intro.is-visible {
+      animation: galleryThumbRise 800ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+    .gallery-thumb--intro-onload {
+      animation: galleryThumbRise 800ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+    .gallery-thumb--intro-1 { animation-delay: 0ms; }
+    .gallery-thumb--intro-2 { animation-delay: 140ms; }
+    .gallery-thumb--intro-3 { animation-delay: 280ms; }
+    .gallery-thumb--intro-4 { animation-delay: 420ms; }
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      grid-column: 1 / -1;
+    }
+    .gallery-thumb--story {
+      aspect-ratio: 9 / 16;
+      position: relative;
+      padding: 2px;
+      border: 0;
+      cursor: pointer;
+      background:
+        linear-gradient(#f2eadf, #f2eadf) padding-box,
+        linear-gradient(180deg, #f9ce34 0%, #ee2a7b 48%, #6228d7 100%) border-box;
+      overflow: hidden;
+    }
+    .gallery-thumb--story::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #6a1b9a;
+      border-radius: 12px;
+      z-index: 0;
+    }
+    .gallery-thumb--story:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+    .gallery-story__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #6a1b9a;
+      z-index: 1;
+    }
+    .gallery-thumb--story.story-no-fill::before,
+    .gallery-thumb--story.story-no-fill .gallery-story__inner,
+    .gallery-thumb--story.story-no-fill .gallery-thumb video {
+      background: transparent;
+    }
+    .gallery-story__progress {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      z-index: 2;
+    }
+    .gallery-story__bar {
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      overflow: hidden;
+    }
+    .gallery-story__bar.is-active,
+    .gallery-story__bar.is-complete {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .gallery-story__bar.is-active::after,
+    .gallery-story__bar.is-complete::after {
+      content: "";
+      display: block;
+      height: 100%;
+      background: #ffffff;
+    }
+    .gallery-story__bar.is-active::after {
+      width: 100%;
+    }
+    .gallery-story__bar.is-complete::after {
+      width: 100%;
+    }
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #6a1b9a;
+    }
+    .gallery-thumb--post img {
+      border-radius: inherit;
+    }
+    .swatch-card {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      border-radius: 28px;
+    }
+
+    .swatch-band {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px;
+      font-weight: 600;
+    }
+
+    .swatch-band.gray {
+      background: #cccccc;
+      color: #2a2a2a;
+    }
+
+    .swatch-band.black {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .swatch-band.orange {
+      background: #f34a29;
+      color: #ffffff;
+    }
+
+    .phone-mock {
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      width: 160px;
+      height: 300px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 5px solid #0d0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .phone-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 20px;
+      background: #0d0d0d;
+      border-radius: 0 0 14px 14px;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 22px 14px 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    @media (min-width: 768px) {
+      .badge-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.5625fr);
+        align-items: stretch;
+      }
+      .showcase-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .interactive-gallery {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .gallery-copy {
+        flex-basis: auto;
+        max-width: none;
+        min-height: 0;
+        display: block;
+      }
+      .gallery-images-block {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-right: 0;
+      }
+      .gallery-footer {
+        width: 100%;
+        grid-column: auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .gallery-thumbs {
+        grid-template-columns: 1fr;
+      }
+      .gallery-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-viewer {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .badge-card {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+      }.badge-logo {
+        font-size: 38px;
+      }
+      .badge-star {
+        width: 80px;
+        height: 80px;
+      }
+      .showcase-card {
+        height: 240px;
+        border-radius: 22px;
+      }
+      .phone-mock {
+        right: 12%;
+        width: 130px;
+        height: 240px;
+      }
+    }
+
+    .hero-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 4px solid var(--ink);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone.dark {
+      background: #121212;
+      border-color: #0d0d0d;
+    }
+
+    .phone.dark::before {
+      background: #1a1a1a;
+    }
+
+    .phone .screen {
+      position: absolute;
+      inset: 18px 14px 20px;
+      border-radius: 22px;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+
+    .phone.light .screen {
+      background: #f8f8f8;
+    }
+
+    .phone .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
+    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
+    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
+    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
+    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
+    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
+
+    .phone-6 .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 18px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-card { height: 500px; }
+      .phone { width: 150px; height: 300px; }
+      .phone-1 { left: 20px; top: -80px; }
+      .phone-2 { left: 200px; top: -90px; }
+      .phone-3 { left: 380px; top: -70px; }
+      .phone-4 { right: 180px; top: -90px; }
+      .phone-5 { right: 10px; top: -70px; }
+      .phone-6 { bottom: -140px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { height: 460px; }
+      .phone { width: 130px; height: auto;
+        aspect-ratio: 1 / 1; }
+      .phone-1 { left: 10px; top: -90px; }
+      .phone-2 { left: 150px; top: -100px; }
+      .phone-3 { left: 290px; top: -90px; }
+      .phone-4 { right: 130px; top: -110px; }
+      .phone-5 { right: 0; top: -90px; }
+      .phone-6 { bottom: -150px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { height: 420px; border-radius: 28px; }
+      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
+      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
+      .hero-mark { font-size: 52px; }
+    }
+
+  </style>
+</head>
+  <body class="text-black font-body antialiased min-h-screen">
+  <a href="index.html" class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+    <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+  </a>
+  <div class="w-full px-5 py-6">
+    <header class="w-full">
+      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+        <a href="index.html" class="pill-btn hidden">Home</a>
+        <div class="flex-1 text-center"></div>
+        <div class="flex items-center gap-3">
+          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+          <a href="about-me.html" class="pill-btn">Sobre mi</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="interactive-gallery">
+      <div class="gallery-copy">
+        <h2>Chocolinas social media</h2>
+        <p class="gallery-copy__subtitle">2025-2026</p>
+        <p>
+          Desarrollo y diseño de los elementos visuales para el stand de Veganic <br>en Fruit Attraction 2025, una de las ferias internacionales más relevantes del sector hortofrutícola.
+        </p>
+        <p>
+          Ganadora del premio al mejor stand de la feria, otorgado por jurado y visitantes.
+        </p>
+        <a href="proyecto-Bon o Bon.html" class="pill-btn gallery-copy__arrow" aria-label="Ir a proyecto Bon o Bon">&#8594;</a>
+      </div>
+      <div class="gallery-images-block">
+        <div class="gallery-viewer">
+          <img
+            src="imagenes/VEGANIC/main.jpg"
+            alt="Veganic - vista principal de la galería"
+          >
+        </div>
+      </div>
+      <div class="gallery-footer">
+        <div class="gallery-thumbs" aria-label="Posts de social media">
+          <div class="gallery-row">
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-1">
+              <img src="imagenes/chocolinas/Receta cookies.png" alt="Post de Chocolinas con receta de cookies">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-2">
+              <img src="imagenes/chocolinas/Gift Guide 1.1.png" alt="Post de Chocolinas Gift Guide">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-3">
+              <img src="imagenes/chocolinas/1.png" alt="Post de Chocolinas 1">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-4">
+              <img src="imagenes/chocolinas/4.png" alt="Post de Chocolinas 4">
+            </div>
+          </div>
+          <div class="gallery-row gallery-row--observe">
+            <button class="gallery-thumb gallery-thumb--story gallery-thumb--intro gallery-thumb--intro-1" type="button" aria-label="Story de Chocolinas 1" data-images="imagenes/chocolinas/STORY CARGANDO.png|imagenes/chocolinas/STORY REMINDER.png|imagenes/chocolinas/vision board.png">
+              <div class="gallery-story__inner">
+                <div class="gallery-story__progress" aria-hidden="true">
+                  <span class="gallery-story__bar is-active"></span>
+                  <span class="gallery-story__bar"></span>
+                  <span class="gallery-story__bar"></span>
+                </div>
+                <img src="imagenes/chocolinas/STORY CARGANDO.png" alt="Story de Chocolinas 1">
+              </div>
+            </button>
+            <button class="gallery-thumb gallery-thumb--story story-no-fill gallery-thumb--intro gallery-thumb--intro-2" type="button" aria-label="Story de Chocolinas 2" data-images="video:imagenes/chocolinas/ranking 1-subtitulos.mp4|video:imagenes/chocolinas/OOH-1 AL QUÉ_1.mp4|video:imagenes/chocolinas/OOH - INGREDIENTES.mp4">
+              <div class="gallery-story__inner">
+                <div class="gallery-story__progress" aria-hidden="true">
+                  <span class="gallery-story__bar is-active"></span>
+                  <span class="gallery-story__bar"></span>
+                  <span class="gallery-story__bar"></span>
+                </div>
+                <video src="imagenes/chocolinas/ranking 1-subtitulos.mp4" muted playsinline autoplay loop></video>
+              </div>
+            </button>
+            <button class="gallery-thumb gallery-thumb--story gallery-thumb--intro gallery-thumb--intro-3" type="button" aria-label="Story de Chocolinas 3" data-images="imagenes/chocolinas/Story 2.png|imagenes/chocolinas/Story 3.png|imagenes/chocolinas/STORY 1.png">
+              <div class="gallery-story__inner">
+                <div class="gallery-story__progress" aria-hidden="true">
+                  <span class="gallery-story__bar is-active"></span>
+                  <span class="gallery-story__bar"></span>
+                  <span class="gallery-story__bar"></span>
+                </div>
+                <img src="imagenes/chocolinas/Story 2.png" alt="Story de Chocolinas 3">
+              </div>
+            </button>
+            <button class="gallery-thumb gallery-thumb--story gallery-thumb--intro gallery-thumb--intro-4" type="button" aria-label="Story de Chocolinas 4" data-images="video:imagenes/chocolinas/Teaser Chocotorta 9-16.mp4|video:imagenes/chocolinas/Story Mes Chocotorta.mp4|video:imagenes/chocolinas/ooh-descifra-receta.mp4">
+              <div class="gallery-story__inner">
+                <div class="gallery-story__progress" aria-hidden="true">
+                  <span class="gallery-story__bar is-active"></span>
+                  <span class="gallery-story__bar"></span>
+                  <span class="gallery-story__bar"></span>
+                </div>
+                <video src="imagenes/chocolinas/Teaser Chocotorta 9-16.mp4" muted playsinline autoplay loop></video>
+              </div>
+            </button>
+          </div>
+          <div class="gallery-row gallery-row--observe">
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-1">
+              <img src="imagenes/chocolinas/POST 4-v.2.jpg" alt="Post de Chocolinas POST 4 v2">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-2">
+              <img src="imagenes/chocolinas/antojo.png" alt="Post de Chocolinas Antojo">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-3">
+              <img src="imagenes/chocolinas/POST GRÁFICO.png" alt="Post gráfico de Chocolinas">
+            </div>
+            <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-4">
+              <img src="imagenes/chocolinas/5.png" alt="Post de Chocolinas 5">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script>
+    const animatedRows = document.querySelectorAll('.gallery-row--observe');
+    const thumbObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.gallery-thumb--intro').forEach((thumb) => {
+          thumb.classList.add('is-visible');
+        });
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    animatedRows.forEach((row) => {
+      thumbObserver.observe(row);
+    });
+
+    const storyCards = document.querySelectorAll('.gallery-thumb--story');
+
+    storyCards.forEach((storyCard) => {
+      const mediaItems = (storyCard.dataset.images || '')
+        .split('|')
+        .map((item) => item.trim())
+        .filter(Boolean);
+      let storyMedia = storyCard.querySelector('img, video');
+      const progressBars = storyCard.querySelectorAll('.gallery-story__bar');
+      let currentIndex = 0;
+
+      const renderStory = () => {
+        const currentItem = mediaItems[currentIndex];
+        const hasExplicitType = currentItem.includes(':');
+        const [itemType, itemSrc] = hasExplicitType
+          ? currentItem.split(/:(.+)/)
+          : ['image', currentItem];
+        const normalizedType = itemType === 'video' ? 'video' : 'image';
+        const nextMedia = document.createElement(normalizedType === 'video' ? 'video' : 'img');
+
+        nextMedia.src = itemSrc;
+
+        if (normalizedType === 'video') {
+          nextMedia.muted = true;
+          nextMedia.playsInline = true;
+          nextMedia.autoplay = true;
+          nextMedia.loop = true;
+        }
+
+        storyMedia.replaceWith(nextMedia);
+
+        progressBars.forEach((bar, index) => {
+          bar.classList.toggle('is-complete', index < currentIndex);
+          bar.classList.toggle('is-active', index === currentIndex);
+        });
+
+        storyMedia = nextMedia;
+      };
+
+      storyCard.addEventListener('click', (event) => {
+        const bounds = storyCard.getBoundingClientRect();
+        const clickOnRightSide = event.clientX - bounds.left > bounds.width / 2;
+
+        if (clickOnRightSide) {
+          currentIndex = (currentIndex + 1) % mediaItems.length;
+        } else {
+          currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+        }
+
+        renderStory();
+      });
+
+      renderStory();
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

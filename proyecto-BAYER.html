@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio :D </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    :root {
+      --orange: #f24a2a;
+      --ink: #121212;
+    }
+
+    .project-title {
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-size: 46px !important;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #9e2a2b;
+      font-synthesis: none;
+    }
+
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 8px 24px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+
+    .site-logo {
+      width: 128px;
+      height: 128px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 12px;
+      position: absolute;
+      top: 20px;
+      left: 5vw;
+      z-index: 20;
+    }
+
+    .site-logo img {
+      max-width: 72%;
+      max-height: 72%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-card {
+      position: relative;
+      height: 600px;
+      border-radius: 36px;
+      background: var(--orange);
+      overflow: hidden;
+    }
+
+    .badge-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 140px;
+    }
+    .media-grid {
+      position: relative;
+      display: grid;
+      row-gap: 24px;
+      column-gap: 36px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.85fr);
+      align-items: stretch;
+    }
+
+    .media-card {
+      border-radius: 28px;
+      overflow: hidden;
+      background: #f1f1f1;
+    }
+
+    .media-card.tall {
+      aspect-ratio: 9 / 16;
+      grid-row: 1 / span 2;
+    }
+
+    .media-card.square {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+    }
+
+    .media-stack {
+      display: grid;
+      gap: 24px;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-row: 1 / span 2;
+      align-content: space-between;
+      align-self: stretch;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+      .media-card.tall {
+        grid-row: auto;
+      }
+      .media-card.square {
+        width: 100%;
+        justify-self: stretch;
+      }
+      .media-stack {
+        grid-row: auto;
+        height: auto;
+        align-content: start;
+      }
+    }
+
+    .badge-card {
+      border-radius: 28px;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card.black {
+      background: #0d0d0d;
+      color: #ffffff;
+      justify-content: flex-start;
+      padding-left: 56px;
+    }
+
+    .badge-card.orange {
+      background: var(--orange);
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-star {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-meta {
+      position: absolute;
+      right: 0;
+      top: -42px;
+      z-index: 2;
+      text-align: right;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .badge-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .showcase-card {
+      border-radius: 28px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bayer-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      width: 100vw;
+      margin-top: 24px;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .bayer-gallery-item {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #f1f1f1;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .bayer-gallery-item--intro {
+      --row-delay: 0ms;
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .bayer-gallery-item--intro.is-visible {
+      animation: galleryThumbRise 1000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--row-delay);
+    }
+
+    .bayer-gallery-item--intro-1,
+    .bayer-gallery-item--intro-2,
+    .bayer-gallery-item--intro-3,
+    .bayer-gallery-item--intro-4 { --row-delay: 0ms; }
+
+    .bayer-gallery-item--intro-5,
+    .bayer-gallery-item--intro-6,
+    .bayer-gallery-item--intro-7,
+    .bayer-gallery-item--intro-8 { --row-delay: 700ms; }
+
+    .bayer-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 350ms ease, filter 300ms ease;
+    }
+
+    .bayer-gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 28px 18px 16px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0));
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 220ms ease, transform 220ms ease;
+      pointer-events: none;
+    }
+
+    .bayer-gallery-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .bayer-gallery-item:hover .bayer-gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bayer-gallery-item:hover img {
+      filter: grayscale(100%);
+      transform: scale(1.02);
+    }
+
+    .bayer-gallery-item:hover .bayer-gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes galleryThumbRise {
+      0% {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .swatch-card {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      border-radius: 28px;
+    }
+
+    .swatch-band {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px;
+      font-weight: 600;
+    }
+
+    .swatch-band.gray {
+      background: #cccccc;
+      color: #2a2a2a;
+    }
+
+    .swatch-band.black {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .swatch-band.orange {
+      background: #f34a29;
+      color: #ffffff;
+    }
+
+    .phone-mock {
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      width: 160px;
+      height: 300px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 5px solid #0d0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .phone-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 20px;
+      background: #0d0d0d;
+      border-radius: 0 0 14px 14px;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 22px 14px 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    @media (min-width: 768px) {
+      .badge-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .showcase-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+      .showcase-grid.triple {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-logo {
+        width: 96px;
+        height: 96px;
+        padding: 10px;
+      }
+      .badge-card {
+        height: 260px;
+        border-radius: 22px;
+      }
+      .badge-logo {
+        font-size: 38px;
+      }
+      .badge-star {
+        width: 80px;
+        height: 80px;
+      }
+      .showcase-card {
+        height: 240px;
+        border-radius: 22px;
+      }
+      .bayer-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .phone-mock {
+        right: 12%;
+        width: 130px;
+        height: 240px;
+      }
+    }
+
+    .hero-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: 360px;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 4px solid var(--ink);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone.dark {
+      background: #121212;
+      border-color: #0d0d0d;
+    }
+
+    .phone.dark::before {
+      background: #1a1a1a;
+    }
+
+    .phone .screen {
+      position: absolute;
+      inset: 18px 14px 20px;
+      border-radius: 22px;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+
+    .phone.light .screen {
+      background: #f8f8f8;
+    }
+
+    .phone .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
+    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
+    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
+    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
+    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
+    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
+
+    .phone-6 .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 18px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-card { height: 500px; }
+      .phone { width: 150px; height: 300px; }
+      .phone-1 { left: 20px; top: -80px; }
+      .phone-2 { left: 200px; top: -90px; }
+      .phone-3 { left: 380px; top: -70px; }
+      .phone-4 { right: 180px; top: -90px; }
+      .phone-5 { right: 10px; top: -70px; }
+      .phone-6 { bottom: -140px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { height: 460px; }
+      .phone { width: 130px; height: 260px; }
+      .phone-1 { left: 10px; top: -90px; }
+      .phone-2 { left: 150px; top: -100px; }
+      .phone-3 { left: 290px; top: -90px; }
+      .phone-4 { right: 130px; top: -110px; }
+      .phone-5 { right: 0; top: -90px; }
+      .phone-6 { bottom: -150px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { height: 420px; border-radius: 28px; }
+      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
+      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
+      .hero-mark { font-size: 52px; }
+    }
+
+  </style>
+</head>
+<body class="bg-[#F2EADF] text-black font-body antialiased min-h-screen overflow-x-hidden">
+  <a href="index.html" class="site-logo" aria-label="Inicio">
+    <img src="logo/LOGO-rojo.png" alt="Logo Marta">
+  </a>
+  <div class="max-w-[1240px] mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 py-10">
+    <header class="flex items-center justify-between">
+      <div></div>
+      <div class="flex items-center gap-4">
+        <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+        <button class="pill-btn">Sobre m?</button>
+      </div>
+    </header>
+
+    <section class="mt-16 space-y-10">
+      <div class="grid gap-10 lg:grid-cols-[260px_1fr]">
+      <div>
+        <h2 class="project-title font-semibold">Editorial</h2>
+      </div>
+
+      <div class="grid gap-6 text-sm leading-relaxed text-black/80 lg:grid-cols-2">
+        <p>
+          He trabajado en distintos formatos editoriales como brochures, flyers, revistas y catálogos, adaptándome a lo que cada
+          proyecto necesitaba en cada momento.
+        </p>
+        <p>
+          Gran parte de mi experiencia viene de colaborar con marcas del sector agrícola, donde he aprendido a organizar la
+          información de forma clara sin perder el atractivo visual, intentando aportar diseño en un entorno más restrictivo.
+        </p>
+      </div>
+      </div>
+
+        <div class="bayer-gallery" id="bayer-gallery">
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-1">
+            <img src="imagenes/Lignify/image-gen.jpg" alt="Catalogo para Lignify®">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-2">
+            <img src="imagenes/SELECTIS/Guia.jpg" alt="Selectis® Guia de tratamiento">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-3">
+            <img src="imagenes/ascenza/2.jpg" alt="Ascenza® Flyers producto Eluvia">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-4">
+            <img src="imagenes/RAINBOW BIO/01 Free A4 Magazine Mockup Open on Minimal White Surface.jpg" alt="Rainbow bio® catálogo productos en mercado">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-5">
+            <img src="imagenes/BASF/interior.jpg" alt="BASF® Guia productos contra plagas">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-6">
+            <img src="imagenes/preceon/2.jpg" alt="Preceon - foto 2">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-7">
+            <img src="imagenes/round up/manual.jpg" alt="Round Up - manual">
+          </div>
+          <div class="bayer-gallery-item bayer-gallery-item--intro bayer-gallery-item--intro-8">
+            <img src="imagenes/BAYER/mock up 2.jpg" alt="Bayer - mock up 2">
+          </div>
+        </div>
+    </section>
+
+</div>
+<script>
+  const bayerGallery = document.querySelector('#bayer-gallery');
+
+  if (bayerGallery) {
+    bayerGallery.querySelectorAll('.bayer-gallery-item').forEach((item) => {
+      const image = item.querySelector('img');
+      if (!image) return;
+
+      const caption = document.createElement('div');
+      caption.className = 'bayer-gallery-caption';
+      caption.textContent = image.alt;
+      item.appendChild(caption);
+    });
+
+    const galleryObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.bayer-gallery-item--intro').forEach((item) => {
+          item.classList.add('is-visible');
+        });
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    galleryObserver.observe(bayerGallery);
+  }
+</script>
+</body>
+</html>

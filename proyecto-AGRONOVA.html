@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio :D </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    :root {
+      --orange: #f24a2a;
+      --ink: #121212;
+    }
+    .project-title {
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-synthesis: none;
+    }
+
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 8px 24px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      position: relative;
+      height: 600px;
+      border-radius: 36px;
+      background: var(--orange);
+      overflow: hidden;
+    }
+
+    .badge-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 140px;
+    }
+    .media-grid {
+      position: relative;
+      display: grid;
+      row-gap: 24px;
+      column-gap: 36px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .media-card {
+      border-radius: 28px;
+      overflow: hidden;
+      background: #f1f1f1;
+    }
+
+    .media-card.tall {
+      aspect-ratio: 9 / 16;
+      grid-row: 1 / span 2;
+    }
+
+    .media-card.square {
+      aspect-ratio: 1 / 1;
+      width: 92%;
+      justify-self: end;
+    }
+
+    .media-stack {
+      display: grid;
+      gap: 24px;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-row: 1 / span 2;
+      align-content: space-between;
+      align-self: stretch;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+      .media-card.tall {
+        grid-row: auto;
+      }
+      .media-card.square {
+        width: 100%;
+        justify-self: stretch;
+      }
+      .media-stack {
+        grid-row: auto;
+        height: auto;
+        align-content: start;
+      }
+    }
+
+    .badge-card {
+      border-radius: 28px;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card.black {
+      background: #0d0d0d;
+      color: #ffffff;
+      justify-content: flex-start;
+      padding-left: 56px;
+    }
+
+    .badge-card.orange {
+      background: var(--orange);
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-star {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-meta {
+      position: absolute;
+      right: 0;
+      top: -42px;
+      z-index: 2;
+      text-align: right;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .project-meta {
+      margin-top: 1rem;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .badge-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .showcase-card {
+      border-radius: 28px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .swatch-card {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      border-radius: 28px;
+    }
+
+    .swatch-band {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px;
+      font-weight: 600;
+    }
+
+    .swatch-band.gray {
+      background: #cccccc;
+      color: #2a2a2a;
+    }
+
+    .swatch-band.black {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .swatch-band.orange {
+      background: #f34a29;
+      color: #ffffff;
+    }
+
+    .phone-mock {
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      width: 160px;
+      height: 300px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 5px solid #0d0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .phone-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 20px;
+      background: #0d0d0d;
+      border-radius: 0 0 14px 14px;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 22px 14px 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    @media (min-width: 768px) {
+      .badge-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .showcase-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .badge-card {
+        height: 260px;
+        border-radius: 22px;
+      }
+      .badge-logo {
+        font-size: 38px;
+      }
+      .badge-star {
+        width: 80px;
+        height: 80px;
+      }
+      .showcase-card {
+        height: 240px;
+        border-radius: 22px;
+      }
+      .phone-mock {
+        right: 12%;
+        width: 130px;
+        height: 240px;
+      }
+    }
+
+    .hero-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: 360px;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 4px solid var(--ink);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone.dark {
+      background: #121212;
+      border-color: #0d0d0d;
+    }
+
+    .phone.dark::before {
+      background: #1a1a1a;
+    }
+
+    .phone .screen {
+      position: absolute;
+      inset: 18px 14px 20px;
+      border-radius: 22px;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+
+    .phone.light .screen {
+      background: #f8f8f8;
+    }
+
+    .phone .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
+    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
+    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
+    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
+    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
+    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
+
+    .phone-6 .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 18px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-card { height: 500px; }
+      .phone { width: 150px; height: 300px; }
+      .phone-1 { left: 20px; top: -80px; }
+      .phone-2 { left: 200px; top: -90px; }
+      .phone-3 { left: 380px; top: -70px; }
+      .phone-4 { right: 180px; top: -90px; }
+      .phone-5 { right: 10px; top: -70px; }
+      .phone-6 { bottom: -140px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { height: 460px; }
+      .phone { width: 130px; height: 260px; }
+      .phone-1 { left: 10px; top: -90px; }
+      .phone-2 { left: 150px; top: -100px; }
+      .phone-3 { left: 290px; top: -90px; }
+      .phone-4 { right: 130px; top: -110px; }
+      .phone-5 { right: 0; top: -90px; }
+      .phone-6 { bottom: -150px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { height: 420px; border-radius: 28px; }
+      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
+      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
+      .hero-mark { font-size: 52px; }
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    .side-nav:hover {
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .side-nav.prev { left: 32px; }
+    .side-nav.next { right: 32px; }
+
+    @media (max-width: 640px) {
+      .side-nav { font-size: 12px; }
+      .side-nav.prev { left: 18px; }
+      .side-nav.next { right: 18px; }
+    }
+  </style>
+</head>
+<body class="bg-[#F2EADF] text-black font-body antialiased min-h-screen">
+  <a href="index.html" class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+    <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+  </a>
+  <a class="pill-btn side-nav next" href="#" aria-label="Proyecto siguiente">?</a>
+  <div class="max-w-[1240px] mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 py-10">
+    <header class="w-full">
+      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+        <a href="index.html" class="pill-btn hidden">Home</a>
+        <div class="flex-1 text-center"></div>
+        <div class="flex items-center gap-3">
+          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+          <a href="about-me.html" class="pill-btn">Sobre mi</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="mt-10">
+      <div class="hero-card">
+        <img src="imagenes/bon o bon/video.gif" alt="Bon o Bon - video" class="h-full w-full object-cover">
+      </div>
+    </section>
+
+    <section class="mt-12 space-y-10">
+      <div class="grid gap-10 lg:grid-cols-[260px_1fr]">
+      <div>
+        <h2 class="project-title text-4xl font-semibold">Bioconnect campaign</h2>
+        <p class="mt-3 text-sm uppercase tracking-widest text-black/70">
+         UX UI designer
+        </p>
+        <div class="project-meta">
+          <div><strong>Agronova Biotech</strong></div>
+          <div>2025</div>
+        </div>
+      </div>
+
+      <div class="grid gap-6 text-sm leading-relaxed text-black/80 md:grid-cols-2">
+          <p>
+            En Rainbow Bio apoy? la direcci?n creativa desarrollando piezas gr?ficas y materiales digitales para una empresa centrada 
+            en soluciones biol?gicas sostenibles para la agricultura. Dise?? banners, presentaciones y elementos visuales que 
+            reforzaron la identidad de la marca y su mensaje de innovaci?n eco-responsable. 
+            Adem?s, colabor? en la gesti?n visual de sus redes sociales, creando contenido adaptado a cada plataforma y 
+            asegurando una comunicaci?n coherente, atractiva y alineada con los valores de sostenibilidad y tecnolog?a de la compa??a.
+          </p>
+          <p>
+            Colabor? en la creaci?n de composiciones limpias y modernas que resaltan la textura y naturaleza sostenible del material, contribuyendo a una comunicaci?n m?s clara, atractiva y alineada con los valores de la marca.
+          </p>
+        </div>
+      </div>
+
+      <div class="media-grid">
+          <div class="badge-meta">
+            <div><strong>Bon o Bon</strong></div>
+            <div>2024-Actual</div>
+            <div></div>
+          </div>
+          <div class="media-card tall">
+            <img src="imagenes/bon o bon/Phone gif.gif" alt="Bon o Bon - phone gif" class="h-full w-full object-cover">
+          </div>
+          <div class="media-card tall">
+            <video class="h-full w-full object-cover" autoplay loop muted playsinline>
+              <source src="imagenes/bon o bon/tram-video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="media-stack">
+            <div class="media-card square">
+              <img src="imagenes/bon o bon/bonobon.gif" alt="Bon o Bon - bonobon gif" class="h-full w-full object-cover">
+            </div>
+            <div class="media-card square">
+              <img src="imagenes/bon o bon/afa-sorteo.png" alt="Bon o Bon - afa sorteo" class="h-full w-full object-cover">
+            </div>
+          </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1292 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veganic stand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: 'BlauerNueBold';
+      src: url("tipoografias/blauer Nue/BlauerNue-Bold.woff2") format('woff2'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.woff") format('woff'),
+           url("tipoografias/blauer Nue/BlauerNue-Bold.otf") format('opentype');
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+    :root {
+      --orange: #f24a2a;
+      --ink: #121212;
+      --page-bg: #ffffff;
+    }
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    body {
+      background: #F2EADF;
+    }
+    .project-title {
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-synthesis: none;
+    }
+
+    .pill-btn {
+      border: 0;
+      border-radius: 0;
+      padding: 6px 22px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
+    }
+    .pill-btn:hover {
+      color: #111111;
+      opacity: 0.6;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      position: relative;
+      height: 600px;
+      border-radius: 36px;
+      background: var(--orange);
+      overflow: hidden;
+    }
+
+    .badge-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 140px;
+    }
+
+    .badge-card {
+      border-radius: 28px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card.portrait {
+      aspect-ratio: 9 / 16;
+    }
+
+    .badge-card.black {
+      background: #0d0d0d;
+      color: #ffffff;
+      justify-content: flex-start;
+      padding-left: 56px;
+    }
+
+    .badge-card.orange {
+      background: var(--orange);
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-star {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-meta {
+      position: absolute;
+      right: 0;
+      top: -42px;
+      z-index: 2;
+      text-align: right;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .project-meta {
+      margin-top: 1rem;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .badge-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .showcase-card {
+      border-radius: 28px;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .interactive-gallery {
+      display: grid;
+      grid-template-columns: 490px minmax(0, 1fr);
+      align-items: start;
+      column-gap: 56px;
+      row-gap: 18px;
+      width: 100%;
+      margin-top: 64px;
+      margin-bottom: 88px;
+      padding-left: 5%;
+      padding-right: 5%;
+      box-sizing: border-box;
+    }
+    .gallery-copy {
+      flex: 0 0 280px;
+      width: 280px;
+      max-width: 280px;
+      padding-top: 10px;
+      margin-left: 210px;
+      min-height: 0;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: galleryCopyReveal 900ms cubic-bezier(0.19, 1, 0.22, 1) 120ms forwards;
+    }
+    .gallery-copy h2 {
+      margin: 0 0 18px 0;
+      font-size: 46px;
+      line-height: 1.1;
+      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      color: #9e2a2b;
+    }
+    .gallery-copy__subtitle {
+      display: block;
+      margin: -6px 0 16px !important;
+      color: rgba(17, 17, 17, 0.72);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .gallery-copy p {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555555;
+    }
+    .gallery-copy p + p {
+      margin-top: 1.4rem;
+    }
+    .gallery-copy__pager {
+      margin-top: 18px;
+      margin-bottom: 0;
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .gallery-copy__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(120, 120, 120, 0.35);
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+    .gallery-copy__dot.is-active {
+      background: rgba(90, 90, 90, 0.95);
+    }
+    .gallery-copy__dot:hover {
+      transform: scale(1.08);
+    }
+    @keyframes galleryCopyReveal {
+      from {
+        opacity: 0;
+        transform: translateY(48px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes galleryThumbRise {
+      from {
+        opacity: 0;
+        transform: translateY(36px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .gallery-images-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: min(66vw, 1080px);
+      min-width: 920px;
+      max-width: none;
+      margin-left: auto;
+      margin-right: 48px;
+      padding-right: 0;
+    }
+    .gallery-viewer {
+      width: 100%;
+      aspect-ratio: 16 / 7.4;
+      position: sticky;
+      top: 88px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .gallery-viewer img,
+    .gallery-viewer video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 220ms ease;
+    }
+    .gallery-viewer img.is-fading {
+      opacity: 0.2;
+    }
+    .gallery-footer {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding-left: 210px;
+      padding-right: 48px;
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      width: 100%;
+    }
+    .gallery-thumb {
+      position: relative;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .gallery-thumb--post {
+      aspect-ratio: 4 / 5;
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .gallery-thumb--post.gallery-thumb--stack {
+      border: 0;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .gallery-thumb--post.gallery-thumb--stack:focus-visible {
+      outline: 2px solid rgba(17, 17, 17, 0.7);
+      outline-offset: 3px;
+    }
+    .gallery-thumb__pager {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .gallery-thumb__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(80, 80, 80, 0.35);
+    }
+    .gallery-thumb__dot.is-active {
+      background: rgba(55, 55, 55, 0.95);
+    }
+    .gallery-thumb--intro {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+    .gallery-thumb--intro.is-visible {
+      animation: galleryThumbRise 800ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+    .gallery-thumb--intro-onload {
+      animation: galleryThumbRise 800ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+    .gallery-thumb--intro-1 { animation-delay: 0ms; }
+    .gallery-thumb--intro-2 { animation-delay: 140ms; }
+    .gallery-thumb--intro-3 { animation-delay: 280ms; }
+    .gallery-thumb--intro-4 { animation-delay: 420ms; }
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      grid-column: 1 / -1;
+    }
+    .gallery-thumb--story {
+      aspect-ratio: 9 / 16;
+      position: relative;
+      padding: 2px;
+      border: 0;
+      cursor: pointer;
+      background:
+        linear-gradient(#f2eadf, #f2eadf) padding-box,
+        linear-gradient(180deg, #f9ce34 0%, #ee2a7b 48%, #6228d7 100%) border-box;
+      overflow: hidden;
+    }
+    .gallery-thumb--story::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      border-radius: 12px;
+      z-index: 0;
+    }
+    .gallery-thumb--story:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+    .gallery-story__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: transparent;
+      z-index: 1;
+    }
+    .gallery-thumb--story img,
+    .gallery-thumb--story video {
+      background: transparent;
+    }
+    .gallery-thumb--story.story-no-fill::before,
+    .gallery-thumb--story.story-no-fill .gallery-story__inner,
+    .gallery-thumb--story.story-no-fill .gallery-thumb video {
+      background: transparent;
+    }
+    .gallery-story__progress {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      z-index: 2;
+    }
+    .gallery-story__bar {
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      overflow: hidden;
+    }
+    .gallery-story__bar.is-active,
+    .gallery-story__bar.is-complete {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .gallery-story__bar.is-active::after,
+    .gallery-story__bar.is-complete::after {
+      content: "";
+      display: block;
+      height: 100%;
+      background: #ffffff;
+    }
+    .gallery-story__bar.is-active::after {
+      width: 100%;
+    }
+    .gallery-story__bar.is-complete::after {
+      width: 100%;
+    }
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #6a1b9a;
+    }
+    .gallery-thumb--post img {
+      border-radius: inherit;
+    }
+    .swatch-card {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      border-radius: 28px;
+    }
+
+    .swatch-band {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px;
+      font-weight: 600;
+    }
+
+    .swatch-band.gray {
+      background: #cccccc;
+      color: #2a2a2a;
+    }
+
+    .swatch-band.black {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .swatch-band.orange {
+      background: #f34a29;
+      color: #ffffff;
+    }
+
+    .phone-mock {
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      width: 160px;
+      height: 300px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 5px solid #0d0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .phone-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 20px;
+      background: #0d0d0d;
+      border-radius: 0 0 14px 14px;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 22px 14px 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    @media (min-width: 768px) {
+      .badge-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.5625fr);
+        align-items: stretch;
+      }
+      .showcase-grid {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .interactive-gallery {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .gallery-copy {
+        flex-basis: auto;
+        max-width: none;
+        min-height: 0;
+        display: block;
+      }
+      .gallery-images-block {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-right: 0;
+      }
+      .gallery-footer {
+        width: 100%;
+        grid-column: auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .gallery-thumbs {
+        grid-template-columns: 1fr;
+      }
+      .gallery-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-viewer {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .badge-card {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+      }.badge-logo {
+        font-size: 38px;
+      }
+      .badge-star {
+        width: 80px;
+        height: 80px;
+      }
+      .showcase-card {
+        height: 240px;
+        border-radius: 22px;
+      }
+      .phone-mock {
+        right: 12%;
+        width: 130px;
+        height: 240px;
+      }
+    }
+
+    .hero-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .phone {
+      position: absolute;
+      width: 190px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 4px solid var(--ink);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      background: #0d0d0d;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone.dark {
+      background: #121212;
+      border-color: #0d0d0d;
+    }
+
+    .phone.dark::before {
+      background: #1a1a1a;
+    }
+
+    .phone .screen {
+      position: absolute;
+      inset: 18px 14px 20px;
+      border-radius: 22px;
+      background: #0b0b0b;
+      overflow: hidden;
+    }
+
+    .phone.light .screen {
+      background: #f8f8f8;
+    }
+
+    .phone .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
+    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
+    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
+    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
+    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
+    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
+
+    .phone-6 .screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 0 18px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-card { height: 500px; }
+      .phone { width: 150px; height: 300px; }
+      .phone-1 { left: 20px; top: -80px; }
+      .phone-2 { left: 200px; top: -90px; }
+      .phone-3 { left: 380px; top: -70px; }
+      .phone-4 { right: 180px; top: -90px; }
+      .phone-5 { right: 10px; top: -70px; }
+      .phone-6 { bottom: -140px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { height: 460px; }
+      .phone { width: 130px; height: auto;
+        aspect-ratio: 1 / 1; }
+      .phone-1 { left: 10px; top: -90px; }
+      .phone-2 { left: 150px; top: -100px; }
+      .phone-3 { left: 290px; top: -90px; }
+      .phone-4 { right: 130px; top: -110px; }
+      .phone-5 { right: 0; top: -90px; }
+      .phone-6 { bottom: -150px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { height: 420px; border-radius: 28px; }
+      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
+      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
+      .hero-mark { font-size: 52px; }
+    }
+
+  </style>
+</head>
+  <body class="text-black font-body antialiased min-h-screen">
+  <a href="index.html" class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+    <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+  </a>
+  <div class="w-full px-5 py-6">
+    <header class="w-full">
+      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+        <a href="index.html" class="pill-btn hidden">Home</a>
+        <div class="flex-1 text-center"></div>
+        <div class="flex items-center gap-3">
+          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+          <a href="about-me.html" class="pill-btn">Sobre mi</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="interactive-gallery">
+      <div class="gallery-copy">
+        <h2 id="project-heading">Bon o Bon social media</h2>
+        <p id="project-subtitle" class="gallery-copy__subtitle">2025-2026</p>
+        <p id="project-description">
+          Diseño gráfico y creación de contenido para redes sociales, creación de reels y publicidad para el crecimiento de la marca en España.
+        </p>
+        <div class="gallery-copy__pager" aria-label="Selector de proyectos">
+          <button class="gallery-copy__dot is-active" type="button" data-project="bonobon" aria-label="Ver Bon o Bon"></button>
+          <button class="gallery-copy__dot" type="button" data-project="chocolinas" aria-label="Ver Chocolinas"></button>
+          <button class="gallery-copy__dot" type="button" data-project="rainbowbio" aria-label="Ver Rainbow Bio"></button>
+        </div>
+      </div>
+      <div class="gallery-images-block">
+        <div class="gallery-viewer" id="project-viewer">
+          <video
+            src="imagenes/bon o bon/video.mp4"
+            aria-label="Bon o Bon - video principal de la galería"
+            muted
+            playsinline
+            autoplay
+            loop
+          ></video>
+        </div>
+      </div>
+      <div class="gallery-footer">
+        <div class="gallery-thumbs" id="gallery-thumbs" aria-label="Posts de social media"></div>
+      </div>
+    </section>
+
+  </div>
+  <script>
+    const projectHeading = document.querySelector('#project-heading');
+    const projectSubtitle = document.querySelector('#project-subtitle');
+    const projectDescription = document.querySelector('#project-description');
+    const projectViewer = document.querySelector('#project-viewer');
+    const projectDots = document.querySelectorAll('.gallery-copy__dot');
+    let featuredMedia = projectViewer.querySelector('img, video');
+    let isFeaturedTransitioning = false;
+
+    const projectStates = {
+      bonobon: {
+        title: 'Bon o Bon social media',
+        subtitle: '2025-2026',
+        description: 'Diseño gráfico y creación de contenido para redes sociales, creación de reels y publicidad para el crecimiento de la marca en España.',
+        mediaType: 'video',
+        mediaSrc: 'imagenes/bon o bon/video.mp4',
+        mediaAlt: 'Bon o Bon - video principal de la galería'
+      },
+      chocolinas: {
+        title: 'Chocolinas social media',
+        subtitle: '2025-2026',
+        description: 'Diseño y adaptación de piezas visuales para redes sociales, reels y publicidad.',
+        mediaType: 'image',
+        mediaSrc: 'imagenes/chocolinas/vision board.png',
+        mediaAlt: 'Chocolinas - imagen principal de la galería'
+      },
+      rainbowbio: {
+        title: 'Rainbow Bio',
+        subtitle: '2025-2026',
+        description: 'Dirección y apoyo gráfico para Rainbow Bio, intentando acercarnos a un publico más digital en la agricultura ecologica.',
+        mediaType: 'video',
+        mediaSrc: 'imagenes/RAINBOW BIO/video.mp4',
+        mediaAlt: 'Rainbow Bio - video principal de la galería'
+      }
+    };
+
+    const waitForFeaturedMedia = (mediaElement, mediaType) => {
+      if (mediaType === 'image') {
+        if (mediaElement.complete) {
+          return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+          mediaElement.addEventListener('load', resolve, { once: true });
+          mediaElement.addEventListener('error', resolve, { once: true });
+        });
+      }
+
+      if (mediaElement.readyState >= 2) {
+        return Promise.resolve();
+      }
+
+      return new Promise((resolve) => {
+        mediaElement.addEventListener('loadeddata', resolve, { once: true });
+        mediaElement.addEventListener('error', resolve, { once: true });
+      });
+    };
+
+    const renderProjectState = async (projectKey) => {
+      if (isFeaturedTransitioning || !projectStates[projectKey]) {
+        return;
+      }
+
+      const selectedProject = projectStates[projectKey];
+      const nextMedia = document.createElement(selectedProject.mediaType === 'video' ? 'video' : 'img');
+
+      if (selectedProject.mediaType === 'video') {
+        nextMedia.muted = true;
+        nextMedia.playsInline = true;
+        nextMedia.autoplay = true;
+        nextMedia.loop = true;
+      } else {
+        nextMedia.alt = selectedProject.mediaAlt;
+      }
+
+      nextMedia.src = selectedProject.mediaSrc;
+      nextMedia.setAttribute('aria-label', selectedProject.mediaAlt);
+
+      isFeaturedTransitioning = true;
+      await waitForFeaturedMedia(nextMedia, selectedProject.mediaType);
+
+      projectHeading.textContent = selectedProject.title;
+      projectSubtitle.textContent = selectedProject.subtitle;
+      projectDescription.textContent = selectedProject.description;
+      featuredMedia.replaceWith(nextMedia);
+      featuredMedia = nextMedia;
+      renderGalleryRows(projectKey);
+
+      projectDots.forEach((dot) => {
+        dot.classList.toggle('is-active', dot.dataset.project === projectKey);
+      });
+
+      isFeaturedTransitioning = false;
+    };
+
+    projectDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        renderProjectState(dot.dataset.project);
+      });
+    });
+
+    const thumbObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.gallery-thumb--intro').forEach((thumb) => {
+          thumb.classList.add('is-visible');
+        });
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    const galleryThumbs = document.querySelector('#gallery-thumbs');
+
+    const buildMediaTag = (item, className = '') => {
+      if (item.type === 'video') {
+        return `<video src="${item.src}"${className ? ` class="${className}"` : ''} muted playsinline autoplay loop></video>`;
+      }
+
+      return `<img src="${item.src}" alt="${item.alt || ''}"${className ? ` class="${className}"` : ''}>`;
+    };
+
+    const buildPostRow = (items, observe = false) => `
+      <div class="gallery-row${observe ? ' gallery-row--observe' : ''}">
+        ${items.map((item, index) => `
+          ${item.images
+            ? `<button class="gallery-thumb gallery-thumb--post gallery-thumb--stack gallery-thumb--intro ${observe ? '' : 'gallery-thumb--intro-onload '}gallery-thumb--intro-${index + 1}" type="button" aria-label="${item.label || item.alt || ''}" data-images="${item.images.join('|')}">
+                ${buildMediaTag(item.preview || { type: 'image', src: item.images[0], alt: item.alt || '' })}
+                <div class="gallery-thumb__pager" aria-hidden="true">
+                  ${item.images.map((media, mediaIndex) => `<span class="gallery-thumb__dot${mediaIndex === 0 ? ' is-active' : ''}"></span>`).join('')}
+                </div>
+              </button>`
+            : `<div class="gallery-thumb gallery-thumb--post gallery-thumb--intro ${observe ? '' : 'gallery-thumb--intro-onload '}gallery-thumb--intro-${index + 1}">
+                ${buildMediaTag(item)}
+              </div>`}
+        `).join('')}
+      </div>
+    `;
+
+    const buildStoryRow = (items) => `
+      <div class="gallery-row gallery-row--observe">
+        ${items.map((item, index) => `
+          <button class="gallery-thumb gallery-thumb--story ${item.noFill ? 'story-no-fill ' : ''}gallery-thumb--intro gallery-thumb--intro-${index + 1}" type="button" aria-label="${item.label}" data-images="${item.images.join('|')}">
+            <div class="gallery-story__inner">
+              <div class="gallery-story__progress" aria-hidden="true">
+                ${item.images.map((media, mediaIndex) => `<span class="gallery-story__bar${mediaIndex === 0 ? ' is-active' : ''}"></span>`).join('')}
+              </div>
+              ${buildMediaTag(item.preview)}
+            </div>
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    const galleryRowsByProject = {
+      bonobon: [
+        {
+          type: 'post',
+          observe: false,
+          items: [
+            { type: 'image', src: 'imagenes/bon o bon/afa-sorteo.png', alt: 'Post de Bon o Bon AFA sorteo' },
+            { type: 'image', src: 'imagenes/bon o bon/1-dilo-bob.png', alt: 'Post de Bon o Bon 1 dilo bob' },
+            { type: 'image', src: 'imagenes/bon o bon/CARRUSEL 2.png', alt: 'Post de Bon o Bon Carrusel 2' },
+            { type: 'image', src: 'imagenes/bon o bon/breaking-news.png', alt: 'Post de Bon o Bon Breaking News' }
+          ]
+        },
+        {
+          type: 'story',
+          items: [
+            {
+              label: 'Story de Bon o Bon 1',
+              noFill: true,
+              images: ['video:imagenes/bon o bon/SB- DUELO ENVOLTORIOS (1).mp4', 'video:imagenes/bon o bon/OOH - QUIZ AFA 1 - SUBTITULADO.mp4', 'video:imagenes/bon o bon/OOH-PRUEBALA PRIMERO.mp4'],
+              preview: { type: 'video', src: 'imagenes/bon o bon/SB- DUELO ENVOLTORIOS (1).mp4' }
+            },
+            {
+              label: 'Story de Bon o Bon 2',
+              noFill: true,
+              images: ['imagenes/bon o bon/STORY.3 (1).png', 'imagenes/bon o bon/Story Barritas (1).jpg', 'imagenes/bon o bon/STORY STAND.png'],
+              preview: { type: 'image', src: 'imagenes/bon o bon/STORY.3 (1).png', alt: 'Story de Bon o Bon 2' }
+            },
+            {
+              label: 'Story de Bon o Bon 3',
+              noFill: true,
+              images: ['video:imagenes/bon o bon/teaser-1.mp4', 'video:imagenes/bon o bon/Story Año Nuevo.mp4', 'video:imagenes/bon o bon/post-shopping-bag.mp4'],
+              preview: { type: 'video', src: 'imagenes/bon o bon/teaser-1.mp4' }
+            },
+            {
+              label: 'Story de Bon o Bon 4',
+              noFill: false,
+              images: ['imagenes/bon o bon/STORY CHAT.png', 'imagenes/bon o bon/STORY RATE.png', 'imagenes/bon o bon/Story Árbol.png'],
+              preview: { type: 'image', src: 'imagenes/bon o bon/STORY CHAT.png', alt: 'Story de Bon o Bon 4' }
+            }
+          ]
+        },
+        {
+          type: 'post',
+          observe: true,
+          items: [
+            { type: 'image', src: 'imagenes/bon o bon/Sin título-1.png', alt: 'Post de Bon o Bon Sin titulo 1' },
+            { type: 'image', src: 'imagenes/bon o bon/1.png', alt: 'Post de Bon o Bon 1' },
+            { type: 'image', src: 'imagenes/bon o bon/sims1 4-5.jpg', alt: 'Post de Bon o Bon Sims 1 4 5' },
+            { type: 'image', src: 'imagenes/bon o bon/Trampa.png', alt: 'Post de Bon o Bon Trampa' }
+          ]
+        }
+      ],
+      chocolinas: [
+        {
+          type: 'post',
+          observe: false,
+          items: [
+            { type: 'image', src: 'imagenes/chocolinas/Receta cookies.png', alt: 'Post de Chocolinas con receta de cookies' },
+            { type: 'image', src: 'imagenes/chocolinas/Gift Guide 1.1.png', alt: 'Post de Chocolinas Gift Guide' },
+            { type: 'image', src: 'imagenes/chocolinas/1.png', alt: 'Post de Chocolinas 1' },
+            { type: 'image', src: 'imagenes/chocolinas/4.png', alt: 'Post de Chocolinas 4' }
+          ]
+        },
+        {
+          type: 'story',
+          items: [
+            {
+              label: 'Story de Chocolinas 1',
+              noFill: false,
+              images: ['imagenes/chocolinas/STORY CARGANDO.png', 'imagenes/chocolinas/STORY REMINDER.png', 'imagenes/chocolinas/vision board.png'],
+              preview: { type: 'image', src: 'imagenes/chocolinas/STORY CARGANDO.png', alt: 'Story de Chocolinas 1' }
+            },
+            {
+              label: 'Story de Chocolinas 2',
+              noFill: true,
+              images: ['video:imagenes/chocolinas/ranking 1-subtitulos.mp4', 'video:imagenes/chocolinas/OOH-1 AL QUÉ_1.mp4', 'video:imagenes/chocolinas/OOH - INGREDIENTES.mp4'],
+              preview: { type: 'video', src: 'imagenes/chocolinas/ranking 1-subtitulos.mp4' }
+            },
+            {
+              label: 'Story de Chocolinas 3',
+              noFill: false,
+              images: ['imagenes/chocolinas/Story 2.png', 'imagenes/chocolinas/Story 3.png', 'imagenes/chocolinas/STORY 1.png'],
+              preview: { type: 'image', src: 'imagenes/chocolinas/Story 2.png', alt: 'Story de Chocolinas 3' }
+            },
+            {
+              label: 'Story de Chocolinas 4',
+              noFill: false,
+              images: ['video:imagenes/chocolinas/Teaser Chocotorta 9-16.mp4', 'video:imagenes/chocolinas/Story Mes Chocotorta.mp4', 'video:imagenes/chocolinas/ooh-descifra-receta.mp4'],
+              preview: { type: 'video', src: 'imagenes/chocolinas/Teaser Chocotorta 9-16.mp4' }
+            }
+          ]
+        },
+        {
+          type: 'post',
+          observe: true,
+          items: [
+            { type: 'image', src: 'imagenes/chocolinas/POST 4-v.2.jpg', alt: 'Post de Chocolinas POST 4 v2' },
+            { type: 'image', src: 'imagenes/chocolinas/antojo.png', alt: 'Post de Chocolinas Antojo' },
+            { type: 'image', src: 'imagenes/chocolinas/POST GRÁFICO.png', alt: 'Post grafico de Chocolinas' },
+            { type: 'image', src: 'imagenes/chocolinas/5.png', alt: 'Post de Chocolinas 5' }
+          ]
+        }
+      ],
+      rainbowbio: [
+        {
+          type: 'post',
+          observe: false,
+          items: [
+            { type: 'image', src: 'imagenes/RAINBOW BIO/Myths & Facts-4-01.png', alt: 'Myths and Facts de Rainbow Bio' },
+            { type: 'image', src: 'imagenes/RAINBOW BIO/NOVEMBER PLANT BEHAVIOUR_Mesa de trabajo 1 copia_Mesa de trabajo 1.jpg', alt: 'November Plant Behaviour de Rainbow Bio' },
+            {
+              type: 'image',
+              alt: 'Galeria de Rainbow Bio',
+              label: 'Galeria de Rainbow Bio',
+              images: [
+                'imagenes/RAINBOW BIO/GLOBALLY ROOTED/1 (2).png',
+                'imagenes/RAINBOW BIO/GLOBALLY ROOTED/2.png',
+                'imagenes/RAINBOW BIO/GLOBALLY ROOTED/3.png'
+              ],
+              preview: { type: 'image', src: 'imagenes/RAINBOW BIO/GLOBALLY ROOTED/1 (2).png', alt: 'Galeria de Rainbow Bio 1 2' }
+            },
+            { type: 'image', src: 'imagenes/RAINBOW BIO/cover.png', alt: 'Cover de Rainbow Bio' }
+          ]
+        },
+        {
+          type: 'story',
+          items: [
+            {
+              label: 'Story de Rainbow Bio 1',
+              noFill: true,
+              images: ['video:imagenes/RAINBOW BIO/discover_portfolio.mp4', 'video:imagenes/RAINBOW BIO/Story 1 - Growtech.mp4', 'video:imagenes/RAINBOW BIO/Product Reel Foskeen 9.16.mp4'],
+              preview: { type: 'video', src: 'imagenes/RAINBOW BIO/discover_portfolio.mp4' }
+            },
+            {
+              label: 'Story de Rainbow Bio 2',
+              noFill: false,
+              images: ['imagenes/RAINBOW BIO/cover-rafael.png', 'imagenes/RAINBOW BIO/rodgold-reel-cover.png', 'imagenes/RAINBOW BIO/cover-Q&A-2.png'],
+              preview: { type: 'image', src: 'imagenes/RAINBOW BIO/cover-rafael.png', alt: 'Story de Rainbow Bio 2' }
+            },
+            {
+              label: 'Story de Rainbow Bio 3',
+              noFill: true,
+              images: ['video:imagenes/RAINBOW BIO/Agriculture Day.mp4', 'video:imagenes/RAINBOW BIO/TB Searent 9.16 - subtitled.mp4', 'video:imagenes/RAINBOW BIO/Q&A.mp4'],
+              preview: { type: 'video', src: 'imagenes/RAINBOW BIO/Agriculture Day.mp4' }
+            },
+            {
+              label: 'Story de Rainbow Bio 4',
+              noFill: false,
+              images: ['imagenes/RAINBOW BIO/cover-BIAWTG-3_.png', 'imagenes/RAINBOW BIO/World-Soil-Day-Cover-9.16.png', 'imagenes/RAINBOW BIO/besular-reel-cover.png'],
+              preview: { type: 'image', src: 'imagenes/RAINBOW BIO/cover-BIAWTG-3_.png', alt: 'Story de Rainbow Bio 4' }
+            }
+          ]
+        },
+        {
+          type: 'post',
+          observe: true,
+          items: [
+            { type: 'image', src: 'imagenes/RAINBOW BIO/root-101-2-1.png', alt: 'Root 101 de Rainbow Bio' },
+            { type: 'image', src: 'imagenes/RAINBOW BIO/Floss-Group-EN_01.png', alt: 'Floss Group de Rainbow Bio' },
+            { type: 'image', src: 'imagenes/RAINBOW BIO/Searent Carousel 2.png', alt: 'Searent Carousel 2 de Rainbow Bio' },
+            { type: 'image', src: 'imagenes/RAINBOW BIO/01.png', alt: 'Imagen 01 de Rainbow Bio' }
+          ]
+        }
+      ]
+    };
+
+    const observeAnimatedRows = () => {
+      document.querySelectorAll('.gallery-row--observe').forEach((row) => {
+        thumbObserver.observe(row);
+      });
+    };
+
+    const initStoryCards = () => {
+      const storyCards = document.querySelectorAll('.gallery-thumb--story');
+
+      storyCards.forEach((storyCard) => {
+        const mediaItems = (storyCard.dataset.images || '')
+          .split('|')
+          .map((item) => item.trim())
+          .filter(Boolean);
+        let storyMedia = storyCard.querySelector('img, video');
+        const progressBars = storyCard.querySelectorAll('.gallery-story__bar');
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        const updateProgress = () => {
+          progressBars.forEach((bar, index) => {
+            bar.classList.toggle('is-complete', index < currentIndex);
+            bar.classList.toggle('is-active', index === currentIndex);
+          });
+        };
+
+        const buildStoryMedia = (mediaItem) => {
+          const hasExplicitType = mediaItem.includes(':');
+          const [itemType, itemSrc] = hasExplicitType
+            ? mediaItem.split(/:(.+)/)
+            : ['image', mediaItem];
+          const normalizedType = itemType === 'video' ? 'video' : 'image';
+          const nextMedia = document.createElement(normalizedType === 'video' ? 'video' : 'img');
+
+          nextMedia.src = itemSrc;
+
+          if (normalizedType === 'video') {
+            nextMedia.muted = true;
+            nextMedia.playsInline = true;
+            nextMedia.autoplay = true;
+            nextMedia.loop = true;
+          }
+
+          return { nextMedia, normalizedType };
+        };
+
+        const waitForMediaReady = (mediaElement, mediaType) => {
+          if (mediaType === 'image') {
+            if (mediaElement.complete) {
+              return Promise.resolve();
+            }
+
+            return new Promise((resolve) => {
+              mediaElement.addEventListener('load', resolve, { once: true });
+              mediaElement.addEventListener('error', resolve, { once: true });
+            });
+          }
+
+          if (mediaElement.readyState >= 2) {
+            return Promise.resolve();
+          }
+
+          return new Promise((resolve) => {
+            mediaElement.addEventListener('loadeddata', resolve, { once: true });
+            mediaElement.addEventListener('error', resolve, { once: true });
+          });
+        };
+
+        const renderStory = async () => {
+          const { nextMedia, normalizedType } = buildStoryMedia(mediaItems[currentIndex]);
+
+          updateProgress();
+          isTransitioning = true;
+
+          await waitForMediaReady(nextMedia, normalizedType);
+
+          storyMedia.replaceWith(nextMedia);
+          storyMedia = nextMedia;
+          isTransitioning = false;
+        };
+
+        storyCard.addEventListener('click', async (event) => {
+          if (isTransitioning) {
+            return;
+          }
+
+          const bounds = storyCard.getBoundingClientRect();
+          const clickOnRightSide = event.clientX - bounds.left > bounds.width / 2;
+
+          if (clickOnRightSide) {
+            currentIndex = (currentIndex + 1) % mediaItems.length;
+          } else {
+            currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+          }
+
+          await renderStory();
+        });
+
+        updateProgress();
+        renderStory();
+      });
+    };
+
+    const initStackCards = () => {
+      const stackCards = document.querySelectorAll('.gallery-thumb--stack');
+
+      stackCards.forEach((stackCard) => {
+        const mediaItems = (stackCard.dataset.images || '')
+          .split('|')
+          .map((item) => item.trim())
+          .filter(Boolean);
+
+        if (mediaItems.length < 2) {
+          return;
+        }
+
+        let currentIndex = 0;
+        let stackMedia = stackCard.querySelector('img, video');
+        const pagerDots = stackCard.querySelectorAll('.gallery-thumb__dot');
+        let isTransitioning = false;
+
+        const updatePager = () => {
+          pagerDots.forEach((dot, index) => {
+            dot.classList.toggle('is-active', index === currentIndex);
+          });
+        };
+
+        const buildStackMedia = (mediaItem) => {
+          const hasExplicitType = mediaItem.includes(':');
+          const [itemType, itemSrc] = hasExplicitType
+            ? mediaItem.split(/:(.+)/)
+            : ['image', mediaItem];
+          const normalizedType = itemType === 'video' ? 'video' : 'image';
+          const nextMedia = document.createElement(normalizedType === 'video' ? 'video' : 'img');
+
+          nextMedia.src = itemSrc;
+
+          if (normalizedType === 'video') {
+            nextMedia.muted = true;
+            nextMedia.playsInline = true;
+            nextMedia.autoplay = true;
+            nextMedia.loop = true;
+          }
+
+          return { nextMedia, normalizedType };
+        };
+
+        const waitForStackMedia = (mediaElement, mediaType) => {
+          if (mediaType === 'image') {
+            if (mediaElement.complete) {
+              return Promise.resolve();
+            }
+
+            return new Promise((resolve) => {
+              mediaElement.addEventListener('load', resolve, { once: true });
+              mediaElement.addEventListener('error', resolve, { once: true });
+            });
+          }
+
+          if (mediaElement.readyState >= 2) {
+            return Promise.resolve();
+          }
+
+          return new Promise((resolve) => {
+            mediaElement.addEventListener('loadeddata', resolve, { once: true });
+            mediaElement.addEventListener('error', resolve, { once: true });
+          });
+        };
+
+        stackCard.addEventListener('click', async () => {
+          if (isTransitioning) {
+            return;
+          }
+
+          currentIndex = (currentIndex + 1) % mediaItems.length;
+          const { nextMedia, normalizedType } = buildStackMedia(mediaItems[currentIndex]);
+          isTransitioning = true;
+          await waitForStackMedia(nextMedia, normalizedType);
+          stackMedia.replaceWith(nextMedia);
+          stackMedia = nextMedia;
+          updatePager();
+          isTransitioning = false;
+        });
+      });
+    };
+
+    const renderGalleryRows = (projectKey) => {
+      const rows = galleryRowsByProject[projectKey] || galleryRowsByProject.bonobon;
+      galleryThumbs.innerHTML = rows.map((row) => {
+        if (row.type === 'story') {
+          return buildStoryRow(row.items);
+        }
+
+        return buildPostRow(row.items, row.observe);
+      }).join('');
+
+      observeAnimatedRows();
+      initStoryCards();
+      initStackCards();
+    };
+
+    renderGalleryRows('bonobon');
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
