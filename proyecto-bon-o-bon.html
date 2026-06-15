@@ -905,7 +905,7 @@
 
     const buildMixedRow = (storyItem, postItems, observe = false) => `
       <div class="gallery-row gallery-row--mixed${observe ? ' gallery-row--observe' : ''}">
-        <button class="gallery-thumb gallery-thumb--story ${storyItem.noFill ? 'story-no-fill ' : ''}${storyItem.ratio45 ? 'story-ratio-45 ' : ''}gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-1" type="button" aria-label="${storyItem.label}" data-images="${storyItem.images.join('|')}">
+        <button class="gallery-thumb gallery-thumb--story ${storyItem.noFill ? 'story-no-fill ' : ''}${storyItem.ratio45 ? 'story-ratio-45 ' : ''}gallery-thumb--intro ${observe ? '' : 'gallery-thumb--intro-onload '}gallery-thumb--intro-1" type="button" aria-label="${storyItem.label}" data-images="${storyItem.images.join('|')}">
           <div class="gallery-story__inner">
             <div class="gallery-story__progress" aria-hidden="true">
               ${storyItem.images.map((_, i) => `<span class="gallery-story__bar${i === 0 ? ' is-active' : ''}"></span>`).join('')}
@@ -914,7 +914,7 @@
           </div>
         </button>
         ${postItems.map((item, index) => `
-          <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-${index + 2}">
+          <div class="gallery-thumb gallery-thumb--post gallery-thumb--intro ${observe ? '' : 'gallery-thumb--intro-onload '}gallery-thumb--intro-${index + 2}">
             ${buildMediaTag(item)}
           </div>
         `).join('')}
@@ -991,7 +991,7 @@
       tostarica: [
         {
           type: 'post',
-          observe: false,
+          observe: true,
           items: [
             { type: 'image', src: 'imagenes/tostarica/BRAWL%20STARS/quien-es-quien_01.png', alt: 'Post Tostarica Brawl Stars Quién es quién 01' },
             { type: 'image', src: 'imagenes/tostarica/Mesa%20de%20trabajo%202.png', alt: 'Post Tostarica Mesa de trabajo 2' },
