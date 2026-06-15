@@ -991,7 +991,7 @@
       tostarica: [
         {
           type: 'post',
-          observe: true,
+          observe: false,
           items: [
             { type: 'image', src: 'imagenes/tostarica/BRAWL%20STARS/quien-es-quien_01.png', alt: 'Post Tostarica Brawl Stars Quién es quién 01' },
             { type: 'image', src: 'imagenes/tostarica/Mesa%20de%20trabajo%202.png', alt: 'Post Tostarica Mesa de trabajo 2' },
@@ -1330,9 +1330,11 @@
         return buildPostRow(row.items, row.observe);
       }).join('');
 
-      observeAnimatedRows();
-      initStoryCards();
-      initStackCards();
+      requestAnimationFrame(() => {
+        observeAnimatedRows();
+        initStoryCards();
+        initStackCards();
+      });
     };
 
     renderGalleryRows('bonobon');
