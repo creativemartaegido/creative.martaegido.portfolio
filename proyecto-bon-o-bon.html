@@ -369,6 +369,9 @@
     .gallery-row--mixed {
       align-items: end;
     }
+    .gallery-thumb--story.story-ratio-45 {
+      aspect-ratio: 4 / 5;
+    }
     .gallery-thumb--story {
       aspect-ratio: 9 / 16;
       position: relative;
@@ -902,7 +905,7 @@
 
     const buildMixedRow = (storyItem, postItems, observe = false) => `
       <div class="gallery-row gallery-row--mixed${observe ? ' gallery-row--observe' : ''}">
-        <button class="gallery-thumb gallery-thumb--story ${storyItem.noFill ? 'story-no-fill ' : ''}gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-1" type="button" aria-label="${storyItem.label}" data-images="${storyItem.images.join('|')}">
+        <button class="gallery-thumb gallery-thumb--story ${storyItem.noFill ? 'story-no-fill ' : ''}${storyItem.ratio45 ? 'story-ratio-45 ' : ''}gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-1" type="button" aria-label="${storyItem.label}" data-images="${storyItem.images.join('|')}">
           <div class="gallery-story__inner">
             <div class="gallery-story__progress" aria-hidden="true">
               ${storyItem.images.map((_, i) => `<span class="gallery-story__bar${i === 0 ? ' is-active' : ''}"></span>`).join('')}
@@ -921,7 +924,7 @@
     const buildStoryRow = (items) => `
       <div class="gallery-row gallery-row--observe">
         ${items.map((item, index) => `
-          <button class="gallery-thumb gallery-thumb--story ${item.noFill ? 'story-no-fill ' : ''}gallery-thumb--intro gallery-thumb--intro-${index + 1}" type="button" aria-label="${item.label}" data-images="${item.images.join('|')}">
+          <button class="gallery-thumb gallery-thumb--story ${item.noFill ? 'story-no-fill ' : ''}${item.ratio45 ? 'story-ratio-45 ' : ''}gallery-thumb--intro gallery-thumb--intro-${index + 1}" type="button" aria-label="${item.label}" data-images="${item.images.join('|')}">
             <div class="gallery-story__inner">
               <div class="gallery-story__progress" aria-hidden="true">
                 ${item.images.map((media, mediaIndex) => `<span class="gallery-story__bar${mediaIndex === 0 ? ' is-active' : ''}"></span>`).join('')}
@@ -991,34 +994,25 @@
           observe: false,
           items: [
             { type: 'image', src: 'imagenes/tostarica/BRAWL%20STARS/quien-es-quien_01.png', alt: 'Post Tostarica Brawl Stars Quién es quién 01' },
-            { type: 'image', src: 'imagenes/tostarica/anuncio%20pack/AnuncioPack.jpg', alt: 'Post Tostarica Anuncio Pack' },
-            { type: 'image', src: 'imagenes/tostarica/adivina%20minion/AdivinaMinion-1.png', alt: 'Post Tostarica Adivina Minion' },
+            { type: 'image', src: 'imagenes/tostarica/Mesa%20de%20trabajo%202.png', alt: 'Post Tostarica Mesa de trabajo 2' },
+            { type: 'image', src: 'imagenes/tostarica/Licencia%20copia.png', alt: 'Post Tostarica Licencia copia' },
             { type: 'image', src: 'imagenes/tostarica/LA%20ROJA/TEST-1.png', alt: 'Post Tostarica TEST-1' }
           ]
         },
         {
           type: 'mixed',
-          observe: false,
+          observe: true,
           storyItem: {
-            label: 'Story Tostarica 1',
+            label: 'DibujaBob Tostarica',
             noFill: true,
-            images: ['video:imagenes/tostarica/Bobesponja.mp4', 'video:imagenes/tostarica/Cangrejovideo.mp4', 'video:imagenes/tostarica/Calamardov-2.mp4'],
-            preview: { type: 'video', src: 'imagenes/tostarica/Bobesponja.mp4' }
+            ratio45: true,
+            images: ['video:imagenes/tostarica/aprende%20a%20BOB/DibujaBob-Slide2.mp4', 'video:imagenes/tostarica/aprende%20a%20BOB/DibujaBob-Slide4.mp4', 'video:imagenes/tostarica/aprende%20a%20BOB/DibujaBob-Slide3.mp4'],
+            preview: { type: 'video', src: 'imagenes/tostarica/aprende%20a%20BOB/DibujaBob-Slide2.mp4' }
           },
           postItems: [
-            { type: 'video', src: 'imagenes/tostarica/aprende%20a%20BOB/Dibujabob-Slide1.mp4', alt: 'Post Tostarica Aprende a Bob' },
-            { type: 'image', src: 'imagenes/tostarica/Laberinto/Laberinto-1.jpg', alt: 'Post Tostarica Laberinto' },
-            { type: 'image', src: 'imagenes/tostarica/adivina%20minion/AdivinaMinion-1.png', alt: 'Post Tostarica Adivina Minion' }
-          ]
-        },
-        {
-          type: 'post',
-          observe: true,
-          items: [
-            { type: 'image', src: 'imagenes/tostarica/Laberinto/Laberinto-1.jpg', alt: 'Post Tostarica Laberinto 1' },
-            { type: 'image', src: 'imagenes/tostarica/Laberinto/Laberinto-2.png', alt: 'Post Tostarica Laberinto 2' },
-            { type: 'image', src: 'imagenes/tostarica/adivina%20minion/AdivinaMinion-2%C3%A7.png', alt: 'Post Tostarica Adivina Minion 2' },
-            { type: 'image', src: 'imagenes/tostarica/Qu%C3%A9%20licencia%20ser%C3%A1/Qu%C3%A9licenciaser%C3%A14.5.jpg', alt: 'Post Tostarica Qué licencia será' }
+            { type: 'image', src: 'imagenes/tostarica/LA%20ROJA/KIT-2.png', alt: 'Post Tostarica KIT-2' },
+            { type: 'image', src: 'imagenes/tostarica/adivina%20minion/AdivinaMinion-1.png', alt: 'Post Tostarica Adivina Minion' },
+            { type: 'image', src: 'imagenes/tostarica/BRAWL%20STARS/Bol-leche-frase%20legal.jpg', alt: 'Post Tostarica Bol leche frase legal' }
           ]
         }
       ],
