@@ -366,6 +366,9 @@
       gap: 15px;
       grid-column: 1 / -1;
     }
+    .gallery-row--mixed {
+      align-items: end;
+    }
     .gallery-thumb--story {
       aspect-ratio: 9 / 16;
       position: relative;
@@ -898,7 +901,7 @@
     `;
 
     const buildMixedRow = (storyItem, postItems, observe = false) => `
-      <div class="gallery-row${observe ? ' gallery-row--observe' : ''}">
+      <div class="gallery-row gallery-row--mixed${observe ? ' gallery-row--observe' : ''}">
         <button class="gallery-thumb gallery-thumb--story ${storyItem.noFill ? 'story-no-fill ' : ''}gallery-thumb--intro gallery-thumb--intro-onload gallery-thumb--intro-1" type="button" aria-label="${storyItem.label}" data-images="${storyItem.images.join('|')}">
           <div class="gallery-story__inner">
             <div class="gallery-story__progress" aria-hidden="true">
