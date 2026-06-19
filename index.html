@@ -33,7 +33,8 @@
       --hola-font-3: "Trovical Reg", "Arial Narrow", sans-serif;
       --hola-font-4: "CasualHuman Bold", "Inter", sans-serif;
     }
-    body { background: #F2EADF; overflow-y: hidden; }
+    body { background: #F2EADF; }
+    body.is-intro-active { overflow: hidden; }
     .fade-slide { opacity: 0; transition: opacity 1s ease; }
     .fade-slide.active { opacity: 1; }
     .pill-btn {
@@ -497,12 +498,15 @@
       if (!body || !overlay) return;
 
       const finishIntro = () => {
-        if (overlay) overlay.style.pointerEvents = 'none';
+        if (overlay) {
+          overlay.style.pointerEvents = 'none';
+          overlay.style.visibility = 'hidden';
+        }
         body.classList.add("intro-reveal", "intro-finished");
         body.classList.remove("is-intro-active");
         window.setTimeout(() => {
-          overlay.remove();
-        }, 1050);
+          if (overlay && overlay.parentNode) overlay.remove();
+        }, 300);
       };
 
       if (prefersReducedMotion) {
