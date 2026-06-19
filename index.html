@@ -372,9 +372,10 @@
       }
       #projects {
         height: auto !important;
-        min-height: 0 !important;
+        min-height: calc(100vh - 80px) !important;
         flex-direction: column;
-        align-items: center;
+        justify-content: space-between;
+        align-items: stretch;
         padding-bottom: 0 !important;
       }
       .carousel {
@@ -398,6 +399,7 @@
         bottom: auto !important;
         grid-template-columns: 1fr;
         padding: 12px 6% 32px;
+        margin-top: auto;
       }
       .left-box h1 {
         font-size: clamp(48px, 18vw, 120px);
