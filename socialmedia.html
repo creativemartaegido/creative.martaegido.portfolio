@@ -881,6 +881,33 @@
       });
     });
 
+    const projectOrder = ['bonobon', 'tostarica', 'chocolinas', 'rainbowbio'];
+    let currentProjectIndex = 0;
+    let swipeTouchStartX = 0;
+    let swipeTouchStartY = 0;
+
+    const galleryCopy = document.querySelector('.gallery-copy');
+    if (galleryCopy) {
+      galleryCopy.addEventListener('touchstart', (e) => {
+        swipeTouchStartX = e.touches[0].clientX;
+        swipeTouchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      galleryCopy.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - swipeTouchStartX;
+        const dy = e.changedTouches[0].clientY - swipeTouchStartY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        const activeDot = document.querySelector('.gallery-copy__dot.is-active');
+        currentProjectIndex = projectOrder.indexOf(activeDot?.dataset.project ?? 'bonobon');
+        if (dx < 0) {
+          currentProjectIndex = Math.min(currentProjectIndex + 1, projectOrder.length - 1);
+        } else {
+          currentProjectIndex = Math.max(currentProjectIndex - 1, 0);
+        }
+        renderProjectState(projectOrder[currentProjectIndex]);
+      }, { passive: true });
+    }
+
     const thumbObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
