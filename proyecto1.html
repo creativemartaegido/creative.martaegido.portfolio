@@ -1,25 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lignify work</title>
+  <title>Branding - Marta</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-            body: ['Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
   <style>
     @font-face {
       font-family: 'BlauerNueBold';
@@ -30,22 +18,10 @@
       font-weight: 700;
       font-display: swap;
     }
-
-    :root {
-      --orange: #f24a2a;
-      --ink: #121212;
-    }
-
     html, body {
       overflow-x: hidden;
       background: #F2EADF;
-      scroll-behavior: smooth;
     }
-
-    body {
-      background: #F2EADF !important;
-    }
-
     .pill-btn {
       border: 0;
       border-radius: 0;
@@ -57,1693 +33,248 @@
       background: transparent;
       transition: color 200ms ease, opacity 200ms ease, font-weight 200ms ease;
     }
-
-    .title-bonobon {
-      font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif !important;
-      font-weight: 700 !important;
-      font-style: normal;
-      font-synthesis: none;
-      color: #9e2a2b;
-      font-size: 46px;
-      line-height: 1.1;
-      margin: 0;
-    }
-
     .pill-btn:hover {
       color: #111111;
       opacity: 0.6;
       font-weight: 700;
     }
-
-    .hero-card {
-      position: relative;
-      height: 600px;
-      background: var(--orange);
-      overflow: hidden;
-    }
-
-    .gallery-breakout {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-top: clamp(12px, 3vw, 40px);
-      padding-left: 0;
-    }
-    
-    /* Card overlay for hover title */
-    .overflow-hidden { position: relative; }
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0);
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding-bottom: 18px;
-      transition: background 220ms ease;
-      pointer-events: none;
-    }
-    .card-title {
-      color: #ffffff;
-      font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      font-size: 32px;
-      line-height: 1.15;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 220ms ease, transform 220ms ease;
-      text-align: left;
-      padding: 0 12px;
-      pointer-events: none;
-    }
-    .overflow-hidden:hover .card-overlay { background: rgba(0,0,0,0.55); }
-    .overflow-hidden:hover .card-title { opacity: 1; transform: translateY(0); }
-
-    @keyframes galleryThumbRise {
-      from {
-        opacity: 0;
-        transform: translateY(36px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .gallery-card--intro {
-      opacity: 0;
-      transform: translateY(36px);
-    }
-    .gallery-card--intro.is-visible {
-      animation: galleryThumbRise 800ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
-    }
-    .gallery-card--intro-1 { animation-delay: 0ms; }
-    .gallery-card--intro-2 { animation-delay: 140ms; }
-    .gallery-card--intro-3 { animation-delay: 280ms; }
-    .gallery-card--intro-4 { animation-delay: 420ms; }
-    .gallery-card--intro-5 { animation-delay: 560ms; }
-    .gallery-card--intro-6 { animation-delay: 700ms; }
-
-    .photo-gallery {
-      --side-peek: 36%;
-      position: relative;
-      height: min(68vh, 620px);
-      min-height: 420px;
-      overflow: hidden;
-      color: #111111;
-      user-select: none;
-      touch-action: pan-y;
-      perspective: 1600px;
-    }
-
-    .gallery-track {
-      position: relative;
-      height: 100%;
-    }
-
-    .gallery-slide {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      overflow: hidden;
-      background: transparent;
-      padding: 0;
-      opacity: 0;
-      transform: translate3d(100%, 0, 0);
-      transition: transform 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 900ms ease;
-      pointer-events: none;
-      will-change: transform, opacity;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backface-visibility: hidden;
-    }
-
-    .gallery-slide.is-active {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      pointer-events: auto;
-      z-index: 2;
-    }
-
-    .gallery-slide.is-before {
-      opacity: 1;
-      transform: translate3d(calc(var(--side-peek) * -1), 0, 0);
-      z-index: 1;
-    }
-
-    .gallery-slide.is-after {
-      opacity: 1;
-      transform: translate3d(var(--side-peek), 0, 0);
-      z-index: 1;
-    }
-
-    .gallery-slide.is-hidden-left {
-      opacity: 0;
-      transform: translate3d(-115%, 0, 0);
-      z-index: 0;
-    }
-
-    .gallery-slide.is-hidden-right {
-      opacity: 0;
-      transform: translate3d(115%, 0, 0);
-      z-index: 0;
-    }
-
-    .photo-gallery.is-dragging .gallery-slide {
-      transition: none;
-    }
-
-    .gallery-slide.is-resetting {
-      transition: none !important;
-    }
-
-    .gallery-media {
-      position: relative;
-      width: min(47vw, 720px);
-      height: min(35vw, 520px);
-      overflow: hidden;
-      border: none;
-      box-shadow: none;
-      background: #d8d8d8;
-      transition: transform 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 900ms ease, filter 900ms ease;
-      will-change: transform, opacity, filter;
-    }
-
-    .gallery-media.is-portrait {
-      width: min(30vw, 430px);
-      height: min(46vw, 620px);
-    }
-
-    .gallery-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.24);
-      opacity: 0;
-      transition: opacity 900ms ease;
-      pointer-events: none;
-    }
-
-    .gallery-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.03) translate3d(var(--parallax-x, 0px), 0, 0);
-      transition: transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
-      will-change: transform;
-    }
-
-    .gallery-slide.is-active .gallery-media img {
-      transform: scale(1) translate3d(var(--parallax-x, 0px), 0, 0);
-    }
-
-    .gallery-slide.is-active .gallery-media::after {
-      opacity: 0;
-    }
-
-    .gallery-slide.is-before .gallery-media,
-    .gallery-slide.is-after .gallery-media {
-      transform: scale(0.87);
-      opacity: 0.94;
-      filter: saturate(0.96);
-    }
-
-    .gallery-slide.is-hidden-left .gallery-media,
-    .gallery-slide.is-hidden-right .gallery-media {
-      transform: scale(0.83);
-      opacity: 0.88;
-      filter: saturate(0.92);
-    }
-
-    .gallery-slide.is-before .gallery-media::after,
-    .gallery-slide.is-after .gallery-media::after,
-    .gallery-slide.is-hidden-left .gallery-media::after,
-    .gallery-slide.is-hidden-right .gallery-media::after {
-      opacity: 1;
-    }
-
-    .gallery-kicker,
-    .gallery-counter {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(17, 17, 17, 0.58);
-    }
-
-    .gallery-header {
-      position: absolute;
-      inset: 24px 24px auto 24px;
-      z-index: 3;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      pointer-events: none;
-    }
-
-    .gallery-header > * {
-      pointer-events: auto;
-    }
-
-    .gallery-arrows {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .gallery-control {
-      width: 52px;
-      height: 52px;
-      border: 1px solid rgba(17, 17, 17, 0.16);
-      background: rgba(255, 255, 255, 0.82);
-      color: #111111;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .gallery-control:hover {
-      background: rgba(255, 255, 255, 1);
-      border-color: rgba(17, 17, 17, 0.32);
-      transform: scale(0.96);
-    }
-
-    .gallery-thumbs {
-      display: none;
-    }
-
-    .gallery-thumb {
-      width: clamp(56px, 7vw, 82px);
-      height: clamp(72px, 10vw, 108px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.08);
-      opacity: 0.48;
-      cursor: pointer;
-      transition: opacity 200ms ease, transform 200ms ease, border-color 200ms ease;
-    }
-
-    .gallery-thumb:hover,
-    .gallery-thumb.is-active {
-      opacity: 1;
-      border-color: rgba(255, 255, 255, 0.78);
-      transform: translateY(-4px);
-    }
-
-    .gallery-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-click-flash {
-      animation: galleryClickFlash 260ms ease;
-    }
-
-    @keyframes galleryClickFlash {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.985); }
-      100% { transform: scale(1); }
-    }
-
-    .badge-grid {
-      display: grid;
-      gap: 24px;
-      margin-top: 140px;
-    }
-
-    .badge-card {
-      border-radius: 28px;
-      height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .badge-card.black {
-      background: #0d0d0d;
-      color: #ffffff;
-      justify-content: flex-start;
-      padding-left: 56px;
-    }
-
-    .badge-card.orange {
-      background: var(--orange);
-      color: #ffffff;
-      position: relative;
-      z-index: 1;
-    }
-
-    .badge-logo {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 56px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .badge-star {
-      width: 110px;
-      height: 110px;
-    }
-
-    .badge-meta {
-      position: absolute;
-      right: 0;
-      top: -42px;
-      z-index: 2;
-      text-align: right;
-      font-size: 13px;
-      color: rgba(0, 0, 0, 0.7);
-    }
-
-    .project-meta {
-      margin-top: 1rem;
-      color: rgba(0, 0, 0, 0.7);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .badge-stack {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .showcase-grid {
-      display: grid;
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    .showcase-card {
-      border-radius: 28px;
-      height: 320px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .video-panel {
-      margin-top: 48px;
-      width: min(100vw - 48px, 1120px);
-      margin-left: 50%;
-      transform: translateX(-50%);
-      aspect-ratio: 16 / 9;
-      background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-panel video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .video-panel::before {
-      content: none;
-    }
-
-    .video-play {
-      position: relative;
-      z-index: 1;
-      width: 84px;
-      height: 84px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(10px);
-      pointer-events: none;
-    }
-
-    .video-play::before {
-      content: "";
-      margin-left: 6px;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      border-left: 18px solid #ffffff;
-    }
-
-    .video-label {
-      position: absolute;
-      left: 28px;
-      bottom: 24px;
-      z-index: 1;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.72);
-      pointer-events: none;
-    }
-
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 900ms ease-out, transform 950ms cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-
-    .reveal-up.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .swatch-card {
-      display: grid;
-      grid-template-rows: repeat(3, 1fr);
-      border-radius: 28px;
-    }
-
-    .swatch-band {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 0 28px;
-      font-weight: 600;
-    }
-
-    .swatch-band.gray {
-      background: #cccccc;
-      color: #2a2a2a;
-    }
-
-    .swatch-band.black {
-      background: #000000;
-      color: #ffffff;
-    }
-
-    .swatch-band.orange {
-      background: #f34a29;
-      color: #ffffff;
-    }
-
-    .phone-mock {
-      position: absolute;
-      right: 18%;
-      bottom: -18px;
-      width: 160px;
-      height: 300px;
-      border-radius: 28px;
-      background: #ffffff;
-      border: 5px solid #0d0d0d;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
-    }
-
-    .phone-mock::before {
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 20px;
-      background: #0d0d0d;
-      border-radius: 0 0 14px 14px;
-    }
-
-    .phone-screen {
-      position: absolute;
-      inset: 22px 14px 18px;
-      border-radius: 18px;
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
-    }
-
-    @media (min-width: 768px) {
-      .badge-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .showcase-grid {
-        grid-template-columns: 3fr 2fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .badge-card {
-        height: 260px;
-        border-radius: 22px;
-      }
-      .badge-logo {
-        font-size: 38px;
-      }
-      .badge-star {
-        width: 80px;
-        height: 80px;
-      }
-      .showcase-card {
-        height: 240px;
-        border-radius: 22px;
-      }
-      .phone-mock {
-        right: 12%;
-        width: 130px;
-        height: 240px;
-      }
-    }
-
-    .hero-mark {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 72px;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    .phone {
-      position: absolute;
-      width: 190px;
-      height: 360px;
-      border-radius: 30px;
-      background: #ffffff;
-      border: 4px solid var(--ink);
-      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
-      overflow: hidden;
-    }
-
-    .phone::before {
-      content: "";
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92px;
-      height: 24px;
-      background: #0d0d0d;
-      border-radius: 0 0 16px 16px;
-    }
-
-    .phone.dark {
-      background: #121212;
-      border-color: #0d0d0d;
-    }
-
-    .phone.dark::before {
-      background: #1a1a1a;
-    }
-
-    .phone .screen {
-      position: absolute;
-      inset: 18px 14px 20px;
-      border-radius: 22px;
-      background: #0b0b0b;
-      overflow: hidden;
-    }
-
-    .phone.light .screen {
-      background: #f8f8f8;
-    }
-
-    .phone .screen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .phone-1 { left: 70px; top: -70px; transform: rotate(-1deg); }
-    .phone-2 { left: 320px; top: -90px; transform: rotate(1deg); }
-    .phone-3 { left: 560px; top: -60px; transform: rotate(-0.5deg); }
-    .phone-4 { right: 220px; top: -95px; transform: rotate(1.5deg); }
-    .phone-5 { right: 40px; top: -70px; transform: rotate(-1deg); }
-    .phone-6 { left: 50%; bottom: -120px; transform: translateX(-50%); }
-
-    .phone-6 .screen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #ffffff;
-      font-size: 18px;
-      font-weight: 600;
-      padding: 0 18px;
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-card { height: 500px; }
-      .gallery-breakout {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        padding-left: 0;
-      }
-      .photo-gallery { height: min(64vh, 560px); min-height: 380px; }
-      .photo-gallery { --side-peek: 42%; }
-      .gallery-media {
-        width: min(56vw, 620px);
-        height: min(42vw, 440px);
-      }
-      .gallery-media.is-portrait {
-        width: min(34vw, 360px);
-        height: min(52vw, 520px);
-      }
-      .phone { width: 150px; height: 300px; }
-      .phone-1 { left: 20px; top: -80px; }
-      .phone-2 { left: 200px; top: -90px; }
-      .phone-3 { left: 380px; top: -70px; }
-      .phone-4 { right: 180px; top: -90px; }
-      .phone-5 { right: 10px; top: -70px; }
-      .phone-6 { bottom: -140px; }
-    }
-
-    @media (max-width: 768px) {
-      .hero-card { height: 460px; }
-      .gallery-breakout {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-top: 16px;
-        padding-left: 0;
-      }
-      .photo-gallery { height: 58vh; min-height: 340px; }
-      .photo-gallery { --side-peek: 50%; }
-      .gallery-media {
-        width: min(70vw, 480px);
-        height: min(52vw, 360px);
-      }
-      .gallery-media.is-portrait {
-        width: min(48vw, 320px);
-        height: min(72vw, 470px);
-      }
-      .phone { width: 130px; height: 260px; }
-      .phone-1 { left: 10px; top: -90px; }
-      .phone-2 { left: 150px; top: -100px; }
-      .phone-3 { left: 290px; top: -90px; }
-      .phone-4 { right: 130px; top: -110px; }
-      .phone-5 { right: 0; top: -90px; }
-      .phone-6 { bottom: -150px; }
-    }
-
-    @media (max-width: 640px) {
-      .hero-card { height: 420px; }
-      .gallery-breakout {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-top: 12px;
-      }
-      .photo-gallery { height: 52vh; min-height: 300px; }
-      .photo-gallery { --side-peek: 56%; }
-      .gallery-header { inset: 18px 18px auto 18px; }
-      .gallery-control { width: 46px; height: 46px; }
-      .gallery-thumbs { display: none; }
-      .gallery-media {
-        width: min(74vw, 360px);
-        height: min(58vw, 280px);
-      }
-      .gallery-media.is-portrait {
-        width: min(58vw, 280px);
-        height: min(88vw, 420px);
-      }
-      .phone-1, .phone-2, .phone-3, .phone-4, .phone-5 { display: none; }
-      .phone-6 { width: 170px; height: 320px; bottom: -120px; }
-      .hero-mark { font-size: 52px; }
-    }
-
-    /* Responsive gallery tweaks */
-    @media (max-width: 1024px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
-      .gallery-breakout .overflow-hidden img { height: 360px !important; }
-      .gallery-breakout > div { padding-left: 2rem !important; padding-right: 2rem !important; }
-    }
-    @media (max-width: 640px) {
-      .gallery-grid { grid-template-columns: 1fr !important; }
-      .gallery-breakout .overflow-hidden img { height: 260px !important; }
-      .gallery-breakout > div { padding-left: 1rem !important; padding-right: 1rem !important; }
-    }
-    @media (max-width: 768px) {
-      header > div {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      header > div .flex-1 {
-        display: none;
-      }
-      .pill-btn {
-        padding: 8px 14px;
-        font-size: 14px;
-      }
-      .gallery-breakout {
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .gallery-breakout .max-w-full {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      .gallery-grid {
-        gap: 24px;
-      }
-      .gallery-breakout .overflow-hidden img {
-        height: auto !important;
-        min-height: 220px !important;
-      }
-    }
-
-    .project-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 60;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 520ms ease;
-      overflow: hidden;
-    }
-    .project-modal.is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .project-modal__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(17, 17, 17, 0.28);
-      opacity: 0;
-      transition: opacity 520ms ease;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .project-modal.is-open .project-modal__overlay {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .project-modal__sheet {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      max-height: 100vh;
-      min-height: 100vh;
-      background: #ffffff;
-      border-radius: 0;
-      opacity: 0.98;
-      transform: translate3d(0, 100%, 0);
-      transition: transform 760ms cubic-bezier(0.16, 1, 0.3, 1), opacity 520ms ease;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: none;
-      z-index: 20;
-      touch-action: pan-y;
-      will-change: transform, opacity;
-    }
-    .project-modal.is-open .project-modal__sheet {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-    .project-modal__handle {
-      width: 44px;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(17, 17, 17, 0.18);
-      margin: 14px auto 6px;
-    }
-    .project-modal__close {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      z-index: 2;
-      width: 44px;
-      height: 44px;
-      border: 0;
-      border-radius: 999px;
-      background: #111111;
-      color: #ffffff;
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-      transition: transform 200ms ease, background 200ms ease;
-      z-index: 30;
-    }
-    .project-modal__close:hover {
-      transform: scale(0.96);
-      background: #0f0f0f;
-    }
-    .project-modal__body {
-      position: relative;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      padding: 0 20px 24px;
-      display: grid;
-      gap: 24px;
-    }
-    .project-modal__content {
-      display: grid;
-      gap: 24px;
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 520ms ease, transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: 120ms;
-      will-change: opacity, transform;
-    }
-    .project-modal.is-open .project-modal__content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .project-modal__gallery {
-      position: relative;
-      overflow: hidden;
-      min-height: clamp(460px, 68vh, 820px);
-      background: #f5f5f5;
-      touch-action: pan-x;
-    }
-    .project-modal__gallery-inner {
-      width: 100%;
-      overflow: hidden;
-    }
-    .project-modal__track {
-      display: block;
-      width: 100%;
-    }
-    .project-modal__slide {
-      width: 100%;
-      height: clamp(460px, 68vh, 820px);
-      position: relative;
-      overflow: hidden;
-    }
-    .project-modal__slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .project-modal__info {
-      --modal-info-offset: clamp(64px, 10vw, 180px);
-      display: grid;
-      gap: 18px;
-      padding-left: var(--modal-info-offset);
-    }
-    .project-modal__story {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
-      gap: 28px;
-      align-items: start;
-      margin-top: 8px;
-      padding-top: 22px;
-    }
-    .project-modal__story-quote {
-      margin: 0;
-      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      color: #1a1a1a;
-      max-width: 28ch;
-    }
-    .project-modal__story-text {
-      margin: 0;
-      max-width: 62ch;
-      line-height: 1.85;
-      color: rgba(17, 17, 17, 0.76);
-    }
-    .project-modal__columns {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-auto-rows: clamp(440px, 62vh, 760px);
-      gap: 18px;
-      margin-top: 10px;
-      margin-left: calc(var(--modal-info-offset) * -1);
-      width: calc(100% + var(--modal-info-offset));
-      grid-column: 1 / -1;
-    }
-    .project-modal__column-image {
-      position: relative;
-      overflow: hidden;
-      background: #f2f2f2;
-      min-height: 100%;
-      height: 100%;
-      opacity: 0;
-      transform: translateY(42px) scale(0.985);
-      transition:
-        opacity 700ms cubic-bezier(0.19, 1, 0.22, 1),
-        transform 700ms cubic-bezier(0.19, 1, 0.22, 1);
-      will-change: opacity, transform;
-    }
-    .project-modal__column-image.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .project-modal__column-image:nth-child(2) {
-      transition-delay: 120ms;
-    }
-    .project-modal__column-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .project-modal__eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(17, 17, 17, 0.55);
-      margin: 0;
-    }
-    .project-modal__title {
+    .title-bonobon {
       font-family: 'BlauerNueBold', 'Space Grotesk', 'Inter', system-ui, sans-serif;
       font-weight: 700;
-      font-style: normal;
-      font-synthesis: none;
       color: #9e2a2b;
       font-size: 46px;
       line-height: 1.1;
       margin: 0;
     }
-    .project-modal__description {
-      margin: 0;
-      color: rgba(17, 17, 17, 0.78);
-      line-height: 1.8;
-      max-width: 72ch;
+    .branding-carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
     }
-    .project-modal__footer {
+    .branding-carousel__track {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 4px;
-      border-top: 1px solid rgba(17, 17, 17, 0.08);
+      width: 100%;
     }
-    .project-modal__tag {
-      font-size: 13px;
-      color: rgba(17, 17, 17, 0.75);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .branding-carousel__group {
+      display: flex;
+      gap: 6px;
+      width: 100%;
     }
-    .project-modal__cta {
-      font-size: 13px;
-      color: var(--orange);
-      font-weight: 700;
-      text-transform: uppercase;
+    .branding-carousel__item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .modal-open {
+    .branding-carousel__item-img {
+      width: 100%;
+      height: 380px;
       overflow: hidden;
     }
-
-    @media (max-width: 768px) {
-      .project-modal__info {
-        --modal-info-offset: 0px;
-        padding-left: 0;
-      }
-      .project-modal__story {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .project-modal__columns {
-        grid-template-columns: 1fr;
-        grid-auto-rows: min(56vh, 520px);
-      }
-      .project-modal__column-image {
-        min-height: 100%;
-      }
-      .project-modal__sheet {
-        min-height: 92vh;
-      }
-      .project-modal__gallery {
-        min-height: min(52vh, 460px);
-      }
-      .project-modal__slide {
-        height: min(52vh, 460px);
-      }
+    .branding-carousel__item-img img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .branding-carousel__item-label {
+      padding: 0 2px;
+    }
+    .branding-carousel__item-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #111111;
+      margin: 0 0 3px;
+    }
+    .branding-carousel__item-cat {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9e2a2b;
+      margin: 0;
+    }
+    @keyframes branding-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 </head>
 <body class="text-black font-body antialiased min-h-screen flex flex-col">
-  <a href="index.html" class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
-    <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+
+  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+    <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
-  <div class="w-full px-5 py-6 flex-1">
-    <header class="w-full">
-      <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
-        <a href="index.html" class="pill-btn hidden">Home</a>
-        <div class="flex-1 text-center"></div>
-        <div class="flex items-center gap-3">
-          <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
-          <a href="about-me.html" class="pill-btn">Sobre mi</a>
-        </div>
+
+  <header class="w-full">
+    <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+      <div class="flex-1 text-center"></div>
+      <div class="flex items-center gap-3">
+        <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
+        <a href="about-me.html" class="pill-btn">Sobre mi</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="mt-12">
-      <div class="grid gap-10 justify-center">
-        <div class="text-center mx-auto">
-          <h2 class="title-bonobon">Branding projects</h2>
-        </div>
-      </div>
-    </section>
+  <main class="flex-1 pt-8">
+    <div class="px-10 mb-10 text-center">
+      <h1 class="title-bonobon">Branding projects</h1>
+    </div>
+    <div style="height: 80px;"></div>
 
-    <section class="gallery-breakout mt-12">
-      <div class="max-w-full mx-auto px-6 sm:px-12">
-        <div class="grid gap-6 gallery-grid" style="grid-template-columns: repeat(3, 1fr); align-items: start; row-gap: 40px;">
-          <div class="overflow-hidden rounded-[8px] bg-white shadow-[0_30px_80px_rgba(0,0,0,0.08)] gallery-card--intro gallery-card--intro-1">
-            <img src="imagenes/BRANDING/lignify-photo.png" alt="Lingify-Rebranding" class="h-[420px] w-full object-cover">
-          </div>
-          <div class="overflow-hidden rounded-[8px] bg-white shadow-[0_30px_80px_rgba(0,0,0,0.08)] gallery-card--intro gallery-card--intro-2">
-            <img src="imagenes/BRANDING/Pulpa-photo.png" alt="PULPA-Brand creation" class="h-[420px] w-full object-cover">
-          </div>
-          <div class="overflow-hidden rounded-[8px] bg-white shadow-[0_30px_80px_rgba(0,0,0,0.08)] gallery-card--intro gallery-card--intro-3">
-            <img src="imagenes/BRANDING/Bloomy-Photo.png" alt="Bloomy-Logo creation" class="h-[420px] w-full object-cover">
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <div class="project-modal" aria-hidden="true">
-    <div class="project-modal__overlay"></div>
-    <section class="project-modal__sheet" role="dialog" aria-modal="true" aria-label="Detalle del proyecto" tabindex="-1">
-      <div class="project-modal__handle" aria-hidden="true"></div>
-      <button type="button" class="project-modal__close" data-modal-close aria-label="Cerrar">×</button>
-      <div class="project-modal__body">
-        <div class="project-modal__content">
-          <div class="project-modal__gallery" data-modal-gallery>
-            <div class="project-modal__gallery-inner">
-              <div class="project-modal__track">
-                <div class="project-modal__slide is-active">
-                  <img src="imagenes/Lignify/1.jpg" alt="Lignify - imagen 1" data-modal-image>
-                </div>
-              </div>
+    <div class="branding-carousel" style="padding: 0 40px; margin-bottom: 60px;">
+      <div class="branding-carousel__track">
+        <div class="branding-carousel__group">
+          <div class="branding-carousel__item" data-project="lignify" style="cursor:pointer;">
+            <div class="branding-carousel__item-img"><img src="imagenes/BRANDING/lignify-photo.png" alt="Lignify"></div>
+            <div class="branding-carousel__item-label">
+              <p class="branding-carousel__item-name">Lignify</p>
+              <p class="branding-carousel__item-cat">Branding y fotografía</p>
             </div>
           </div>
-          <div class="project-modal__info">
-            <p class="project-modal__eyebrow" data-modal-eyebrow>Detalle del proyecto</p>
-            <h2 class="project-modal__title" data-modal-title>Lignify — Branding, packaging y activaciones</h2>
-            <p class="project-modal__description" data-modal-description>Proyecto de identidad visual para Lignify. Al hacer clic en cualquier imagen del grid se abre un panel desde abajo con una imagen principal fija y una descripción sin recargar la página. El panel se puede cerrar con el botón “X”.</p>
-            <section class="project-modal__story" aria-label="Resumen del proyecto">
-              <p class="project-modal__story-text" data-modal-story-text></p>
-              <p class="project-modal__story-quote" data-modal-quote>Una imagen principal arriba y, debajo, un bloque de proyecto que se siente como una nueva sección dentro del slide-up.</p>
-              <div class="project-modal__columns" aria-label="Imagenes del proyecto">
-                <figure class="project-modal__column-image">
-                  <img src="imagenes/Lignify/2.jpg" alt="Imagen complementaria del proyecto" data-modal-column-image="0">
-                </figure>
-                <figure class="project-modal__column-image">
-                  <img src="imagenes/Lignify/3.jpg" alt="Segunda imagen complementaria del proyecto" data-modal-column-image="1">
-                </figure>
-                <figure class="project-modal__column-image">
-                  <img src="imagenes/Lignify/4.jpg" alt="Tercera imagen complementaria del proyecto" data-modal-column-image="2">
-                </figure>
-                <figure class="project-modal__column-image">
-                  <img src="imagenes/Lignify/5.jpg" alt="Cuarta imagen complementaria del proyecto" data-modal-column-image="3">
-                </figure>
-              </div>
-            </section>
-            <div class="project-modal__footer">
-              <span class="project-modal__tag" data-modal-tag>Branding / Web / Editorial</span>
-              <span class="project-modal__cta">Cerrar con X</span>
+          <div class="branding-carousel__item" data-project="pulpa" style="cursor:pointer;">
+            <div class="branding-carousel__item-img"><img src="imagenes/BRANDING/Pulpa-photo.png" alt="PULPA"></div>
+            <div class="branding-carousel__item-label">
+              <p class="branding-carousel__item-name">PULPA</p>
+              <p class="branding-carousel__item-cat">Branding</p>
+            </div>
+          </div>
+          <div class="branding-carousel__item" data-project="bloomy" style="cursor:pointer;">
+            <div class="branding-carousel__item-img"><img src="imagenes/BRANDING/Bloomy-Photo.png" alt="Bloomy"></div>
+            <div class="branding-carousel__item-label">
+              <p class="branding-carousel__item-name">Bloomy</p>
+              <p class="branding-carousel__item-cat">Logo design</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </main>
+
+
+<!-- Project overlay -->
+<div id="proj-overlay" style="display:none; position:fixed; inset:0; background:#F2EADF; z-index:9999; flex-direction:column;">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:28px 40px;">
+    <div>
+      <p id="proj-overlay-cat" style="font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#9e2a2b; margin:0 0 4px;"></p>
+      <h2 id="proj-overlay-title" style="font-family:'BlauerNueBold','Inter',sans-serif; font-size:28px; font-weight:700; color:#111; margin:0 0 4px;"></h2>
+      <p id="proj-overlay-subtitle" style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#555; margin:0;"></p>
+    </div>
+    <button id="proj-overlay-close" style="background:none; border:none; font-size:28px; cursor:pointer; color:#111; line-height:1; padding:8px;">&times;</button>
   </div>
 
-  <script>
-    (function() {
-      const gallery = document.querySelector("[data-gallery]");
-      if (!gallery) return;
+  <div style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center;">
+    <button id="proj-prev" style="position:absolute; left:20px; z-index:2; background:none; border:1px solid #111; width:44px; height:44px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8249;</button>
+    <div id="proj-slides" style="display:flex; width:100%; height:100%; align-items:center; justify-content:center; padding:0 80px;">
+      <img id="proj-slide-img" style="max-height:70vh; max-width:100%; object-fit:contain; display:block;">
+    </div>
+    <button id="proj-next" style="position:absolute; right:20px; z-index:2; background:none; border:1px solid #111; width:44px; height:44px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8250;</button>
+  </div>
 
-      const slides = Array.from(gallery.querySelectorAll(".gallery-slide"));
-      const thumbs = Array.from(gallery.querySelectorAll(".gallery-thumb"));
-      const stageImages = Array.from(gallery.querySelectorAll(".gallery-media img"));
-      let currentIndex = 0;
-      let startX = 0;
-      let dragOffset = 0;
-      let isPointerDown = false;
-      let isDragging = false;
-      let wheelLocked = false;
-      let direction = 1;
-      let parallaxTarget = 0;
-      let parallaxCurrent = 0;
-      let parallaxFrame = null;
+  <div style="padding:16px 40px 28px; display:flex; gap:8px; justify-content:center;" id="proj-dots"></div>
+</div>
 
-      function clampIndex(index) {
-        if (index < 0) return slides.length - 1;
-        if (index >= slides.length) return 0;
-        return index;
-      }
+<script>
+  const projects = {
+    lignify: {
+      title: 'Lignify',
+      subtitle: 'Trabajo de subdirección de fotografía y rebranding de la marca',
+      cat: 'Branding y fotografía',
+      images: [
+        'imagenes/Lignify/1.jpg',
+        'imagenes/Lignify/2.jpg',
+        'imagenes/Lignify/3.jpg',
+        'imagenes/Lignify/4.jpg',
+        'imagenes/Lignify/5.jpg',
+        'imagenes/Lignify/6.jpg'
+      ]
+    },
+    pulpa: {
+      title: 'PULPA',
+      subtitle: 'Branding y diseño de marca ficticia',
+      cat: 'Branding',
+      images: [
+        'imagenes/PULPA/mejorado-Picsart-AiImageEnhancer.jpg',
+        'imagenes/PULPA/NUEVO.png',
+        'imagenes/PULPA/Mesa%20de%20trabajo%201.jpg',
+        'imagenes/PULPA/pulpla%20card%20with%20effect%202.jpg'
+      ]
+    },
+    bloomy: {
+      title: 'Bloomy',
+      subtitle: 'Diseño de logo',
+      cat: 'Logo design',
+      images: [
+        'imagenes/BRANDING/Bloomy-Photo.png',
+        'imagenes/intro/bloomy.jpg'
+      ]
+    }
+  };
 
-      function setSlideState(slide, state) {
-        slide.classList.remove("is-active", "is-before", "is-after", "is-hidden-left", "is-hidden-right");
-        slide.classList.add(state);
-      }
+  const overlay = document.getElementById('proj-overlay');
+  const closeBtn = document.getElementById('proj-overlay-close');
+  const titleEl = document.getElementById('proj-overlay-title');
+  const subtitleEl = document.getElementById('proj-overlay-subtitle');
+  const catEl = document.getElementById('proj-overlay-cat');
+  const slideImg = document.getElementById('proj-slide-img');
+  const dotsEl = document.getElementById('proj-dots');
+  const prevBtn = document.getElementById('proj-prev');
+  const nextBtn = document.getElementById('proj-next');
 
-      function render(index, nextDirection = direction || 1) {
-        const nextIndex = clampIndex(index);
-        const prevIndex = clampIndex(nextIndex - 1);
-        const followingIndex = clampIndex(nextIndex + 1);
+  let currentImages = [];
+  let currentIndex = 0;
 
-        slides.forEach((slide, i) => {
-          slide.style.transform = "";
-          slide.style.opacity = "";
-
-          if (i === nextIndex) {
-            setSlideState(slide, "is-active");
-            return;
-          }
-
-          if (i === prevIndex) {
-            setSlideState(slide, "is-before");
-          } else if (i === followingIndex) {
-            setSlideState(slide, "is-after");
-          } else if (i < nextIndex) {
-            setSlideState(slide, "is-hidden-left");
-          } else {
-            setSlideState(slide, "is-hidden-right");
-          }
-        });
-
-        thumbs.forEach((thumb, i) => {
-          thumb.classList.toggle("is-active", i === nextIndex);
-        });
-
-        currentIndex = nextIndex;
-        dragOffset = 0;
-        direction = nextDirection;
-        applyParallax(0);
-      }
-
-      function goToNext() {
-        render((currentIndex + 1) % slides.length, 1);
-      }
-
-      function goToPrev() {
-        render((currentIndex - 1 + slides.length) % slides.length, -1);
-      }
-
-      function syncParallax() {
-        parallaxCurrent += (parallaxTarget - parallaxCurrent) * 0.12;
-
-        if (Math.abs(parallaxTarget - parallaxCurrent) < 0.12) {
-          parallaxCurrent = parallaxTarget;
-        }
-
-        stageImages.forEach((image) => {
-          image.style.setProperty("--parallax-x", `${parallaxCurrent * -0.12}px`);
-        });
-
-        if (Math.abs(parallaxTarget - parallaxCurrent) > 0.12) {
-          parallaxFrame = requestAnimationFrame(syncParallax);
-        } else {
-          parallaxFrame = null;
-        }
-      }
-
-      function applyParallax(offset) {
-        parallaxTarget = offset;
-
-        if (parallaxFrame !== null) return;
-        parallaxFrame = requestAnimationFrame(syncParallax);
-      }
-
-      function beginDrag(clientX) {
-        isPointerDown = true;
-        isDragging = false;
-        startX = clientX;
-      }
-
-      function updateDrag(clientX) {
-        if (!isPointerDown) return;
-        dragOffset = clientX - startX;
-
-        if (Math.abs(dragOffset) > 6) {
-          isDragging = true;
-        }
-
-        gallery.classList.toggle("is-dragging", isDragging);
-
-        const activeSlide = slides[currentIndex];
-        const targetIndex = dragOffset < 0 ? clampIndex(currentIndex + 1) : clampIndex(currentIndex - 1);
-        const oppositeIndex = dragOffset < 0 ? clampIndex(currentIndex - 1) : clampIndex(currentIndex + 1);
-        const targetSlide = slides[targetIndex];
-        const activeProgress = Math.min(Math.abs(dragOffset) / gallery.clientWidth, 1);
-        const sideOffset = window.innerWidth <= 640 ? 64 : window.innerWidth <= 768 ? 56 : window.innerWidth <= 1024 ? 44 : 38;
-        const targetStart = dragOffset < 0 ? sideOffset : -sideOffset;
-        const targetTransform = targetStart + (dragOffset / gallery.clientWidth) * 100;
-
-        slides.forEach((slide, index) => {
-          if (index !== currentIndex && index !== targetIndex && index !== oppositeIndex) {
-            const hiddenState = index < currentIndex ? "is-hidden-left" : "is-hidden-right";
-            setSlideState(slide, hiddenState);
-            slide.style.transform = "";
-            slide.style.opacity = "";
-          }
-        });
-
-        setSlideState(activeSlide, "is-active");
-        activeSlide.style.transform = `translate3d(${(dragOffset / gallery.clientWidth) * 100}%, 0, 0)`;
-        activeSlide.style.opacity = `${1 - activeProgress * 0.35}`;
-
-        setSlideState(targetSlide, dragOffset < 0 ? "is-after" : "is-before");
-        targetSlide.style.transform = `translate3d(${targetTransform}%, 0, 0)`;
-        targetSlide.style.opacity = `${0.45 + activeProgress * 0.55}`;
-
-        const oppositeSlide = slides[oppositeIndex];
-        setSlideState(oppositeSlide, dragOffset < 0 ? "is-before" : "is-after");
-        oppositeSlide.style.transform = "";
-        oppositeSlide.style.opacity = "";
-
-        applyParallax(dragOffset);
-      }
-
-      function endDrag() {
-        if (!isPointerDown) return;
-        isPointerDown = false;
-        gallery.classList.remove("is-dragging");
-
-        if (Math.abs(dragOffset) > gallery.clientWidth * 0.14) {
-          if (dragOffset < 0) {
-            goToNext();
-          } else {
-            goToPrev();
-          }
-        } else {
-          render(currentIndex);
-        }
-      }
-
-      function flashStage() {
-        gallery.classList.remove("gallery-click-flash");
-        void gallery.offsetWidth;
-        gallery.classList.add("gallery-click-flash");
-      }
-
-      thumbs.forEach((thumb, index) => {
-        thumb.addEventListener("click", () => {
-          flashStage();
-          render(index, index > currentIndex ? 1 : -1);
-        });
-      });
-
-      gallery.addEventListener("pointerdown", (event) => {
-        if (event.target.closest(".gallery-control, .gallery-thumb")) return;
-        beginDrag(event.clientX);
-      });
-
-      window.addEventListener("pointermove", (event) => {
-        updateDrag(event.clientX);
-      });
-
-      window.addEventListener("pointerup", endDrag);
-      window.addEventListener("pointercancel", endDrag);
-
-      gallery.addEventListener("click", (event) => {
-        if (isDragging) {
-          event.preventDefault();
-          event.stopPropagation();
-          return;
-        }
-
-        if (!event.target.closest(".gallery-control, .gallery-thumb")) {
-          flashStage();
-        }
-      });
-
-      gallery.addEventListener("wheel", (event) => {
-        if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
-
-        event.preventDefault();
-
-        if (wheelLocked) return;
-        wheelLocked = true;
-
-        if (event.deltaY > 0) {
-          goToNext();
-        } else if (event.deltaY < 0) {
-          goToPrev();
-        }
-
-        window.setTimeout(() => {
-          wheelLocked = false;
-        }, 650);
-      }, { passive: false });
-
-      slides.forEach((slide, index) => {
-        const hiddenState = index === 0 ? "is-active" : "is-hidden-right";
-        setSlideState(slide, hiddenState);
-      });
-
-      render(0, 1);
-    })();
-
-    (function() {
-      const revealItems = document.querySelectorAll("[data-reveal-up]");
-      if (!revealItems.length) return;
-
-      const observer = new IntersectionObserver((entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          currentObserver.unobserve(entry.target);
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: "0px 0px -24px 0px"
-      });
-
-      revealItems.forEach((item) => observer.observe(item));
-    })();
-
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.gallery-breakout .overflow-hidden').forEach(function(card) {
-        var img = card.querySelector('img');
-        var titleText = img && img.alt ? img.alt : '';
-        var overlay = document.createElement('div');
-        overlay.className = 'card-overlay';
-        var h = document.createElement('h3');
-        h.className = 'card-title';
-        h.textContent = titleText;
-        overlay.appendChild(h);
-        card.appendChild(overlay);
-      });
-      document.querySelectorAll('.gallery-card--intro').forEach(function(card, index) {
-        window.setTimeout(function() {
-          card.classList.add('is-visible');
-        }, 140 * index);
-      });
+  const showSlide = (index) => {
+    currentIndex = (index + currentImages.length) % currentImages.length;
+    slideImg.src = currentImages[currentIndex];
+    Array.from(dotsEl.children).forEach((d, i) => {
+      d.style.background = i === currentIndex ? '#111' : 'rgba(0,0,0,0.2)';
     });
-  </script>
-  <script>
-    (function() {
-      const body = document.body;
-      const modal = document.querySelector('.project-modal');
-      const modalOverlay = modal.querySelector('.project-modal__overlay');
-      const modalSheet = modal.querySelector('.project-modal__sheet');
-      const modalImage = modal.querySelector('[data-modal-image]');
-      const modalEyebrow = modal.querySelector('[data-modal-eyebrow]');
-      const modalTitle = modal.querySelector('[data-modal-title]');
-      const modalDescription = modal.querySelector('[data-modal-description]');
-      const modalTag = modal.querySelector('[data-modal-tag]');
-      const modalQuote = modal.querySelector('[data-modal-quote]');
-      const modalStoryText = modal.querySelector('[data-modal-story-text]');
-      const modalColumnImages = Array.from(modal.querySelectorAll('[data-modal-column-image]'));
-      const modalColumnFigures = Array.from(modal.querySelectorAll('.project-modal__column-image'));
-      const closeButton = modal.querySelector('[data-modal-close]');
-      const modalBody = modal.querySelector('.project-modal__body');
-      const openCards = Array.from(document.querySelectorAll('.gallery-breakout .overflow-hidden'));
-      const projectImages = openCards.map(card => card.querySelector('img').src);
-      const projectAlts = openCards.map(card => card.querySelector('img').alt);
-      const projectDetails = [
-        {
-          eyebrow: 'Brand platform',
-          title: 'Lignify — Base visual de marca',
-          description: 'Esta pieza presenta la base del proyecto: una identidad pensada para sentirse limpia, contemporanea y flexible en soportes editoriales, digitales y de presentacion.',
-          tag: 'Branding / Identidad / Sistema',
-          quote: 'La primera imagen funciona como portada: abre el proyecto desde el codigo visual de la marca.',
-          story: 'Una identidad con tono natural y sofisticado, capaz de convivir con fotografia, producto y discurso corporativo sin perder coherencia. Se trabajaron ritmo, color y composicion para que la marca transmita valor, precision y una presencia muy actual.',
-          columns: [
-            { src: 'imagenes/Lignify/2.jpg', alt: 'Lignify detalle visual 1' },
-            { src: 'imagenes/Lignify/3.jpg', alt: 'Lignify detalle visual 2' },
-            { src: 'imagenes/Lignify/4.jpg', alt: 'Lignify detalle visual 3' },
-            { src: 'imagenes/Lignify/5.jpg', alt: 'Lignify detalle visual 4' }
-          ]
-        },
-        {
-          eyebrow: 'Brand creation',
-          title: 'PULPA',
-          description: 'Aqui el foco pasa de la marca base a su expresion visual: como el sistema se despliega en formatos concretos y mantiene una lectura clara.',
-          tag: 'Branding / Arte / Aplicaciones',
-          quote: 'No es solo una imagen distinta: es una capa diferente del proyecto y de como la identidad se comporta.',
-          story: 'La marca se articula con una grilla sobria, contraste controlado y una direccion visual que da continuidad entre piezas. Cada aplicacion refuerza la idea de proyecto integral, no de elementos aislados resueltos por separado.',
-          columns: [
-            { src: 'imagenes/Lignify/3.jpg', alt: 'Lignify aplicacion grafica 1' },
-            { src: 'imagenes/Lignify/4.jpg', alt: 'Lignify aplicacion grafica 2' },
-            { src: 'imagenes/Lignify/5.jpg', alt: 'Lignify aplicacion grafica 3' },
-            { src: 'imagenes/Lignify/6.jpg', alt: 'Lignify aplicacion grafica 4' }
-          ]
-        },
-        {
-          eyebrow: 'Packaging vision',
-          title: 'Bloomy',
-          description: 'Esta vista se centra en el aterrizaje del branding sobre producto, buscando que la identidad conserve caracter incluso en superficies mas funcionales.',
-          tag: 'Packaging / Marca / Producto',
-          quote: 'Cuando la marca baja a packaging, el sistema tiene que seguir hablando con la misma voz.',
-          story: 'Se organizo la informacion para que marca, producto y mensaje convivan sin competir entre si. El proyecto se planteo con sensibilidad hacia acabados, textura visual y una presencia de producto mas premium.',
-          columns: [
-            { src: 'imagenes/Lignify/4.jpg', alt: 'Lignify packaging 1' },
-            { src: 'imagenes/Lignify/5.jpg', alt: 'Lignify packaging 2' },
-            { src: 'imagenes/Lignify/6.jpg', alt: 'Lignify packaging 3' },
-            { src: 'imagenes/Lignify/1.jpg', alt: 'Lignify packaging 4' }
-          ]
-        },
-        {
-          eyebrow: 'Editorial layer',
-          title: 'Lignify — Narrativa en piezas editoriales',
-          description: 'En esta imagen el proyecto se lee desde un enfoque mas editorial, donde la composicion y el aire ayudan a construir una presentacion de marca mas solida.',
-          tag: 'Editorial / Storytelling / Marca',
-          quote: 'La identidad tambien se cuenta con ritmo, espacio y una manera especifica de ordenar el contenido.',
-          story: 'Se definio un lenguaje donde la maquetacion sostiene la elegancia del proyecto sin volverlo rigido. Las piezas editoriales permiten explicar mejor el discurso de marca y mostrar profundidad en el desarrollo.',
-          columns: [
-            { src: 'imagenes/Lignify/1.jpg', alt: 'Lignify editorial 1' },
-            { src: 'imagenes/Lignify/5.jpg', alt: 'Lignify editorial 2' },
-            { src: 'imagenes/Lignify/2.jpg', alt: 'Lignify editorial 3' },
-            { src: 'imagenes/Lignify/6.jpg', alt: 'Lignify editorial 4' }
-          ]
-        },
-        {
-          eyebrow: 'Activation system',
-          title: 'Lignify — Marca en activaciones y campaña',
-          description: 'Este punto muestra como la identidad responde cuando entra en contacto con piezas mas dinamicas, promocionales o de activacion.',
-          tag: 'Campana / Activaciones / Sistema',
-          quote: 'Una buena identidad no se rompe al salir del mockup; se adapta y sigue siendo reconocible.',
-          story: 'Se construyo un sistema lo bastante flexible para escalar a piezas de distintos formatos y objetivos. Aunque cambie el tono de la ejecucion, se conserva una base visual clara que hace que todo siga pareciendo parte del mismo proyecto.',
-          columns: [
-            { src: 'imagenes/Lignify/2.jpg', alt: 'Lignify activacion 1' },
-            { src: 'imagenes/Lignify/6.jpg', alt: 'Lignify activacion 2' },
-            { src: 'imagenes/Lignify/3.jpg', alt: 'Lignify activacion 3' },
-            { src: 'imagenes/Lignify/4.jpg', alt: 'Lignify activacion 4' }
-          ]
-        },
-        {
-          eyebrow: 'Project close',
-          title: 'Lignify — Cierre del universo visual',
-          description: 'La ultima imagen funciona como cierre del recorrido: resume el tono general del proyecto y deja una sensacion de sistema completo.',
-          tag: 'Proyecto / Cierre / Portfolio',
-          quote: 'La muestra termina reforzando la idea principal: un branding con criterio, continuidad y aplicacion real.',
-          story: 'Este ultimo bloque ayuda a leer el proyecto como una construccion integral, no como una suma de visuales sueltos. Tambien sirve para que el slide-up se sienta mas cercano a una presentacion de branding que a una simple galeria.',
-          columns: [
-            { src: 'imagenes/Lignify/6.jpg', alt: 'Lignify cierre 1' },
-            { src: 'imagenes/Lignify/1.jpg', alt: 'Lignify cierre 2' },
-            { src: 'imagenes/Lignify/2.jpg', alt: 'Lignify cierre 3' },
-            { src: 'imagenes/Lignify/3.jpg', alt: 'Lignify cierre 4' }
-          ]
-        }
-      ];
-      let currentIndex = 0;
-      let startX = 0;
-      let startY = 0;
-      let isDraggingSheet = false;
-      let activePointerId = null;
-      let closeTimeoutId = null;
+  };
 
-      const updateColumnVisibility = () => {
-        if (!modalBody) return;
-        const bodyRect = modalBody.getBoundingClientRect();
-        const visibleBottom = bodyRect.top + modalBody.clientHeight;
-        modalColumnFigures.forEach((figure) => {
-          const rect = figure.getBoundingClientRect();
-          const shouldShow = rect.top < visibleBottom - 40 && rect.bottom > bodyRect.top + 20;
-          figure.classList.toggle('is-visible', shouldShow);
-        });
-      };
+  const openProject = (key) => {
+    const p = projects[key];
+    if (!p) return;
+    currentImages = p.images;
+    titleEl.textContent = p.title;
+    subtitleEl.textContent = p.subtitle || '';
+    catEl.textContent = p.cat;
+    dotsEl.innerHTML = p.images.map(() => `<span style="width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,0.2);display:inline-block;cursor:pointer;transition:background 200ms;"></span>`).join('');
+    Array.from(dotsEl.children).forEach((d, i) => d.addEventListener('click', () => showSlide(i)));
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showSlide(0);
+  };
 
-      const renderModal = (index) => {
-        currentIndex = Math.max(0, Math.min(index, projectImages.length - 1));
-        const detail = projectDetails[currentIndex] || projectDetails[0];
-        if (modalImage) {
-          modalImage.src = projectImages[currentIndex];
-          modalImage.alt = projectAlts[currentIndex] || `Proyecto ${currentIndex + 1}`;
-        }
-        if (modalEyebrow) modalEyebrow.textContent = detail.eyebrow;
-        if (modalTitle) modalTitle.textContent = detail.title;
-        if (modalDescription) modalDescription.textContent = detail.description;
-        if (modalTag) modalTag.textContent = detail.tag;
-        if (modalQuote) modalQuote.textContent = detail.quote;
-        if (modalStoryText) modalStoryText.textContent = detail.story;
-        modalColumnImages.forEach((imageNode, idx) => {
-          const imageData = detail.columns && detail.columns[idx] ? detail.columns[idx] : null;
-          if (!imageData) return;
-          imageNode.src = imageData.src;
-          imageNode.alt = imageData.alt;
-        });
-        modalColumnFigures.forEach((figure) => figure.classList.remove('is-visible'));
-        window.requestAnimationFrame(() => {
-          window.requestAnimationFrame(updateColumnVisibility);
-        });
-      };
+  const closeOverlay = () => {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  };
 
-      const openModal = (index) => {
-        if (closeTimeoutId) {
-          window.clearTimeout(closeTimeoutId);
-          closeTimeoutId = null;
-        }
-        renderModal(index);
-        modal.setAttribute('aria-hidden', 'false');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        window.requestAnimationFrame(() => {
-          modal.classList.add('is-open');
-        });
-        setTimeout(() => modalSheet.focus(), 150);
-      };
+  document.querySelectorAll('[data-project]').forEach(card => {
+    card.addEventListener('click', () => openProject(card.dataset.project));
+  });
 
-      const closeModal = () => {
-        modal.classList.remove('is-open');
-        modalSheet.style.transform = '';
-        modalSheet.style.opacity = '';
-        modalOverlay.style.opacity = '';
-        closeTimeoutId = window.setTimeout(() => {
-          modal.setAttribute('aria-hidden', 'true');
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          closeTimeoutId = null;
-        }, 780);
-      };
-
-      const capPointer = (event) => {
-        if (activePointerId !== null) return;
-        activePointerId = event.pointerId;
-        modalSheet.setPointerCapture(activePointerId);
-      };
-
-      const isInteractiveTarget = (target) => {
-        return Boolean(
-          target &&
-          target.closest &&
-          target.closest('.project-modal__close, button, a')
-        );
-      };
-
-      const releasePointer = () => {
-        if (activePointerId !== null) {
-          try { modalSheet.releasePointerCapture(activePointerId); } catch (err) {}
-          activePointerId = null;
-        }
-      };
-
-      const handlePointerDown = (event) => {
-        if (isInteractiveTarget(event.target)) {
-          isDraggingSheet = false;
-          return;
-        }
-        startX = event.clientX;
-        startY = event.clientY;
-        isDraggingSheet = false;
-        capPointer(event);
-      };
-
-      const handlePointerMove = (event) => {
-        if (activePointerId !== event.pointerId) return;
-        const deltaX = event.clientX - startX;
-        const deltaY = event.clientY - startY;
-
-        if (!isDraggingSheet && Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
-          isDraggingSheet = true;
-        }
-
-        if (isDraggingSheet && deltaY > 0) {
-          modalSheet.style.transform = `translateY(${deltaY}px)`;
-          modalOverlay.style.opacity = `${Math.max(0, 1 - deltaY / 300)}`;
-        }
-      };
-
-      const handlePointerUp = (event) => {
-        if (activePointerId !== event.pointerId) return;
-        const deltaY = event.clientY - startY;
-
-        if (isDraggingSheet) {
-          // Do NOT close on swipe down. Reset sheet position smoothly.
-          modalSheet.style.transition = 'transform 420ms cubic-bezier(0.22, 1, 0.36, 1)';
-          modalSheet.style.transform = '';
-          modalOverlay.style.transition = 'opacity 420ms ease';
-          modalOverlay.style.opacity = '';
-          // remove temporary transitions after animation
-          setTimeout(() => {
-            modalSheet.style.transition = '';
-            modalOverlay.style.transition = '';
-          }, 440);
-        } else {
-          modalSheet.style.transform = '';
-          modalOverlay.style.opacity = '';
-        }
-        isDraggingSheet = false;
-        releasePointer();
-      };
-
-      openCards.forEach((card, index) => {
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('aria-label', `Abrir proyecto ${projectAlts[index] || index + 1}`);
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => openModal(index));
-        card.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            openModal(index);
-          }
-        });
-      });
-
-      // Direct close listener on the button (robust) + delegated listener as fallback.
-      if (closeButton) {
-        closeButton.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          releasePointer();
-          closeModal();
-        });
-      }
-      // Delegated fallback: listen at document level to avoid pointer-capture issues.
-      document.addEventListener('click', (e) => {
-        const target = e.target.closest && e.target.closest('.project-modal__close');
-        if (!target) return;
-        e.preventDefault();
-        releasePointer();
-        closeModal();
-      });
-      modalOverlay.addEventListener('click', closeModal);
-      modalSheet.addEventListener('pointerdown', handlePointerDown);
-      modalSheet.addEventListener('pointermove', handlePointerMove);
-      modalSheet.addEventListener('pointerup', handlePointerUp);
-      modalSheet.addEventListener('pointercancel', handlePointerUp);
-      modalSheet.addEventListener('lostpointercapture', releasePointer);
-      if (modalBody) {
-        modalBody.addEventListener('scroll', updateColumnVisibility, { passive: true });
-      }
-
-      window.addEventListener('keydown', (event) => {
-        if (!modal.classList.contains('is-open')) return;
-        if (event.key === 'Escape') closeModal();
-      });
-
-      renderModal(0);
-    })();
-  </script>
+  closeBtn.addEventListener('click', closeOverlay);
+  prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+  nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
+  document.addEventListener('keydown', (e) => {
+    if (overlay.style.display === 'none') return;
+    if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+    if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
+    if (e.key === 'Escape') closeOverlay();
+  });
+</script>
 
 <style>
   @font-face { font-family: "Grift"; src: url("tipoografias/GRIFFT/Grift-Black.otf") format("opentype"); font-weight: 900; font-style: normal; font-display: swap; }
   .sf-footer { background: #111111; color: #ffffff; overflow: hidden; }
   .sf-inner { max-width: 1400px; margin: 0 auto; padding: 40px 48px 0; }
   .sf-top { display: flex; justify-content: flex-end; gap: 80px; }
-  .sf-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 18px; }
+  .sf-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 8px; }
   .sf-form-row { display: flex; align-items: center; border-bottom: 1.5px solid rgba(255,255,255,0.28); padding-bottom: 10px; gap: 10px; min-width: 320px; }
   .sf-email-input { background: transparent; border: none; outline: none; color: #ffffff; font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; flex: 1; padding: 0; }
   .sf-email-input::placeholder { color: rgba(255,255,255,0.4); }
@@ -1768,24 +299,16 @@
 <footer class="sf-footer">
   <div class="sf-inner">
     <div class="sf-top">
-      <div>
-        <p class="sf-label">Trabajemos juntos</p>
-        <form class="sf-form-row" onsubmit="(function(f,e){e.preventDefault();var v=f.querySelector('input').value.trim();if(v)window.location='mailto:creative.martaegido@gmail.com?subject=Hola%20Marta!&body=Mi%20e-mail%20es%3A%20'+encodeURIComponent(v);})(this,event)">
-          <input type="email" placeholder="E-mail" class="sf-email-input" required>
-          <button type="submit" class="sf-arrow-btn" aria-label="Enviar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </form>
-      </div>
+
       <div>
         <p class="sf-label">Contacto</p>
         <a href="mailto:creative.martaegido@gmail.com" class="sf-contact-link">creative.martaegido@gmail.com</a>
         <p class="sf-label">Mis redes</p>
         <div class="sf-socials">
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/creative.martaegido/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" aria-label="LinkedIn">
+          <a href="https://linkedin.com/in/marta-egido-lorente/?skipRedirect=true" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <a href="#" aria-label="Behance">

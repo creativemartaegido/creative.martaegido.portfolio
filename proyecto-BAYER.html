@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -63,22 +63,22 @@
     }
 
     .site-logo {
-      width: 128px;
-      height: 128px;
+      width: 360px;
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 12px;
+      padding: 8px;
       position: absolute;
-      top: 20px;
-      left: 5vw;
+      top: 0;
+      left: 0;
       z-index: 20;
     }
 
     .site-logo img {
-      max-width: 72%;
-      max-height: 72%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
     }
@@ -529,34 +529,23 @@
   </style>
 </head>
 <body class="bg-[#F2EADF] text-black font-body antialiased min-h-screen overflow-x-hidden">
-  <a href="index.html" class="site-logo" aria-label="Inicio">
-    <img src="logo/LOGO-rojo.png" alt="Logo Marta">
+  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Inicio">
+    <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
-  <div class="max-w-[1240px] mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 py-10">
-    <header class="flex items-center justify-between">
-      <div></div>
-      <div class="flex items-center gap-4">
+  <header class="w-full">
+    <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
+      <div class="flex-1 text-center"></div>
+      <div class="flex items-center gap-3">
         <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
-        <button class="pill-btn">Sobre m?</button>
+        <a href="about-me.html" class="pill-btn">Sobre mi</a>
       </div>
-    </header>
+    </div>
+  </header>
+  <div class="max-w-[1240px] mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 py-10">
 
     <section class="mt-16 space-y-10">
-      <div class="grid gap-10 lg:grid-cols-[260px_1fr]">
-      <div>
-        <h2 class="project-title font-semibold">Editorial</h2>
-      </div>
-
-      <div class="grid gap-6 text-sm leading-relaxed text-black/80 lg:grid-cols-2">
-        <p>
-          He trabajado en distintos formatos editoriales como brochures, flyers, revistas y catálogos, adaptándome a lo que cada
-          proyecto necesitaba en cada momento.
-        </p>
-        <p>
-          Gran parte de mi experiencia viene de colaborar con marcas del sector agrícola, donde he aprendido a organizar la
-          información de forma clara sin perder el atractivo visual, intentando aportar diseño en un entorno más restrictivo.
-        </p>
-      </div>
+      <div class="text-center">
+        <h2 class="project-title font-semibold">Trabajos de editorial</h2>
       </div>
 
         <div class="bayer-gallery" id="bayer-gallery">
@@ -624,7 +613,7 @@
   .sf-footer { background: #111111; color: #ffffff; overflow: hidden; }
   .sf-inner { max-width: 1400px; margin: 0 auto; padding: 40px 48px 0; }
   .sf-top { display: flex; justify-content: flex-end; gap: 80px; }
-  .sf-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 18px; }
+  .sf-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 8px; }
   .sf-form-row { display: flex; align-items: center; border-bottom: 1.5px solid rgba(255,255,255,0.28); padding-bottom: 10px; gap: 10px; min-width: 320px; }
   .sf-email-input { background: transparent; border: none; outline: none; color: #ffffff; font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; flex: 1; padding: 0; }
   .sf-email-input::placeholder { color: rgba(255,255,255,0.4); }
@@ -649,24 +638,16 @@
 <footer class="sf-footer">
   <div class="sf-inner">
     <div class="sf-top">
-      <div>
-        <p class="sf-label">Trabajemos juntos</p>
-        <form class="sf-form-row" onsubmit="(function(f,e){e.preventDefault();var v=f.querySelector('input').value.trim();if(v)window.location='mailto:creative.martaegido@gmail.com?subject=Hola%20Marta!&body=Mi%20e-mail%20es%3A%20'+encodeURIComponent(v);})(this,event)">
-          <input type="email" placeholder="E-mail" class="sf-email-input" required>
-          <button type="submit" class="sf-arrow-btn" aria-label="Enviar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </form>
-      </div>
+
       <div>
         <p class="sf-label">Contacto</p>
         <a href="mailto:creative.martaegido@gmail.com" class="sf-contact-link">creative.martaegido@gmail.com</a>
         <p class="sf-label">Mis redes</p>
         <div class="sf-socials">
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/creative.martaegido/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" aria-label="LinkedIn">
+          <a href="https://linkedin.com/in/marta-egido-lorente/?skipRedirect=true" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <a href="#" aria-label="Behance">
@@ -686,3 +667,5 @@
 </footer>
 </body>
 </html>
+
+

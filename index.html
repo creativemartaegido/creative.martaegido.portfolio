@@ -297,19 +297,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #171717;
+      background: #000000;
       overflow: hidden;
       transform: translateY(0);
-      transition: transform 800ms cubic-bezier(0.76, 0, 0.24, 1),
-                  visibility 0s linear 800ms;
+      transition: transform 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 700ms ease,
+                  visibility 0s linear 1000ms;
     }
-    .intro-backdrop {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 38%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
-      opacity: 0.9;
+    body.intro-finished .intro-overlay {
+      opacity: 0;
     }
     .intro-word {
       position: relative;
@@ -318,7 +314,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: min(42vw, 320px);
+      width: min(75vw, 700px);
       padding: 0 4vw;
       user-select: none;
       pointer-events: none;
@@ -327,12 +323,6 @@
       display: block;
       width: 100%;
       height: auto;
-      opacity: 0;
-      transform: scale(1);
-      will-change: opacity;
-      transition: opacity 450ms ease;
-    }
-    body.intro-start .intro-logo {
       opacity: 1;
     }
     .intro-copy {
@@ -384,10 +374,8 @@
 </head>
 <body class="bg-[#F2EADF] text-black font-body antialiased overflow-x-hidden is-intro-active">
   <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
-    <div class="intro-backdrop"></div>
     <div class="intro-word" aria-label="Logo Marta">
-      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="intro-logo">
-      <div class="intro-copy">benvenid@ a mi portfolio</div>
+      <img src="imagenes/m%20animaci%C3%B3n.gif" alt="Logo Marta" class="intro-logo">
     </div>
   </div>
 
@@ -460,8 +448,8 @@
       </div>
     </main>
 
-    <div class="absolute top-[20px] left-[5vw] w-32 h-32 flex items-center justify-center overflow-hidden p-3">
-      <img src="logo/LOGO-rojo.png" alt="Logo Marta" class="max-w-[72%] max-h-[72%] object-contain">
+    <div class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3">
+      <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
     </div>
   </div>
 
@@ -477,7 +465,7 @@
         body.classList.remove("is-intro-active");
         window.setTimeout(() => {
           overlay.remove();
-        }, 825);
+        }, 1050);
       };
 
       if (prefersReducedMotion) {
@@ -490,11 +478,8 @@
 
         window.setTimeout(() => {
           body.classList.add("intro-exit");
-        }, 1150);
-
-        window.setTimeout(() => {
           finishIntro();
-        }, 1625);
+        }, 2230);
       };
 
       if (document.readyState === "complete") {
@@ -600,3 +585,13 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
