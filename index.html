@@ -35,7 +35,8 @@
     }
     body { background: #F2EADF; }
     @media (max-width: 640px) {
-      html, body { height: 100%; overflow: hidden; }
+      html { height: 100svh; overflow: hidden; }
+      body { height: 100%; overflow: hidden; }
     }
     body.is-intro-active { overflow: hidden; }
     .fade-slide { opacity: 0; transition: opacity 1s ease; }
@@ -374,13 +375,13 @@
         align-items: center;
       }
       #projects {
-        height: calc(100vh - 80px) !important;
+        height: calc(100svh - 60px) !important;
         min-height: 0 !important;
         flex-direction: column;
         justify-content: space-between;
         align-items: stretch;
         padding-bottom: 0 !important;
-        overflow: hidden;
+        overflow: visible;
       }
       .carousel {
         padding: 20px 0;
