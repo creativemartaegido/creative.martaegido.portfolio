@@ -324,6 +324,15 @@
     .about-contact-fixed p + p {
       margin-top: 0.55rem;
     }
+    @media (max-width: 640px) {
+      .site-header { min-height: 60px !important; }
+      .contenedor-principal { padding-top: 24px; }
+      .about-photo { height: 280px; }
+    }
+    @media (min-width: 641px) and (max-width: 1023px) {
+      .site-header { min-height: 120px !important; }
+      .contenedor-principal { padding-top: 60px; }
+    }
     @media (max-width: 1023px) {
       .about-copy {
         padding-right: 0.5rem;
@@ -362,10 +371,10 @@
   </style>
 </head>
 <body class="text-black font-body antialiased">
-  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+  <a href="index.html" class="absolute top-0 left-0 w-[120px] h-[60px] sm:w-[240px] sm:h-[120px] lg:w-[360px] lg:h-[180px] flex items-center justify-center overflow-hidden p-1 sm:p-2 lg:p-3" aria-label="Volver al inicio">
     <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
-  <header class="w-full" style="min-height: 180px;">
+  <header class="site-header w-full" style="min-height: 180px;">
     <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">

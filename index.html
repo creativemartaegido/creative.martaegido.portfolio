@@ -360,6 +360,34 @@
         transition: none !important;
       }
     }
+    @media (max-width: 640px) {
+      .carousel {
+        padding: 30px 0;
+      }
+      .carousel__item {
+        width: 220px !important;
+        height: 150px !important;
+      }
+      .carousel__item:nth-child(odd) {
+        width: 180px !important;
+        height: 130px !important;
+      }
+      .carousel__item:nth-child(even) {
+        width: 260px !important;
+        height: 175px !important;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        bottom: 6%;
+        padding: 0 4%;
+      }
+      .left-box h1 {
+        font-size: clamp(48px, 18vw, 120px);
+      }
+      .left-box h2 {
+        font-size: clamp(16px, 5vw, 28px);
+      }
+    }
   </style>
   <noscript>
     <style>
@@ -448,7 +476,7 @@
       </div>
     </main>
 
-    <div class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3">
+    <div class="absolute top-0 left-0 w-[120px] h-[60px] sm:w-[240px] sm:h-[120px] lg:w-[360px] lg:h-[180px] flex items-center justify-center overflow-hidden p-1 sm:p-2 lg:p-3">
       <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
     </div>
   </div>

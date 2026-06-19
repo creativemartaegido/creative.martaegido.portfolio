@@ -100,15 +100,27 @@
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    @media (max-width: 640px) {
+      .site-header { min-height: 60px !important; }
+      .branding-carousel__group {
+        flex-direction: column;
+      }
+      .branding-carousel__item-img {
+        height: 220px;
+      }
+    }
+    @media (min-width: 641px) and (max-width: 1023px) {
+      .site-header { min-height: 120px !important; }
+    }
   </style>
 </head>
 <body class="text-black font-body antialiased min-h-screen flex flex-col">
 
-  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
+  <a href="index.html" class="absolute top-0 left-0 w-[120px] h-[60px] sm:w-[240px] sm:h-[120px] lg:w-[360px] lg:h-[180px] flex items-center justify-center overflow-hidden p-1 sm:p-2 lg:p-3" aria-label="Volver al inicio">
     <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
 
-  <header class="w-full" style="min-height: 120px;">
+  <header class="site-header w-full" style="min-height: 120px;">
     <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
