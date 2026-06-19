@@ -239,25 +239,9 @@
     }
 
     .bayer-gallery-item--intro {
-      --row-delay: 0ms;
-      opacity: 0;
-      transform: translateY(22px);
+      opacity: 1;
+      transform: none;
     }
-
-    .bayer-gallery-item--intro.is-visible {
-      animation: galleryThumbRise 1000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: var(--row-delay);
-    }
-
-    .bayer-gallery-item--intro-1,
-    .bayer-gallery-item--intro-2,
-    .bayer-gallery-item--intro-3,
-    .bayer-gallery-item--intro-4 { --row-delay: 0ms; }
-
-    .bayer-gallery-item--intro-5,
-    .bayer-gallery-item--intro-6,
-    .bayer-gallery-item--intro-7,
-    .bayer-gallery-item--intro-8 { --row-delay: 700ms; }
 
     .bayer-gallery-item img {
       width: 100%;
@@ -529,12 +513,12 @@
   </style>
 </head>
 <body class="bg-[#F2EADF] text-black font-body antialiased min-h-screen overflow-x-hidden">
-  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Inicio">
+  <a href="index.html" class="absolute top-0 left-0 w-[360px] h-[180px] flex items-center justify-center overflow-hidden p-3" aria-label="Volver al inicio">
     <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
-  <header class="w-full">
+  <header class="w-full" style="min-height: 180px;">
     <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
-      <div class="flex-1 text-center"></div>
+      <div class="flex-1"></div>
       <div class="flex items-center gap-3">
         <a href="proyectos-show.html" class="pill-btn">Proyectos</a>
         <a href="about-me.html" class="pill-btn">Sobre mi</a>
@@ -543,7 +527,7 @@
   </header>
   <div class="max-w-[1240px] mx-auto pl-6 pr-6 sm:pl-10 sm:pr-6 py-10">
 
-    <section class="mt-16 space-y-10">
+    <section class="space-y-10" style="margin-top: -80px;">
       <div class="text-center">
         <h2 class="project-title font-semibold">Trabajos de editorial</h2>
       </div>

@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
   <style>
     @font-face {
       font-family: 'BlauerNueBold';
@@ -148,7 +160,7 @@
     <img src="imagenes/logo%20mio%202.png" alt="Logo Marta" class="w-full h-full object-contain">
   </a>
 
-  <header class="w-full" style="min-height: 180px;">
+  <header class="w-full" style="min-height: 120px;">
     <div class="w-full pl-6 pr-6 sm:pl-10 sm:pr-6 pt-8 pb-6 flex items-start justify-between gap-6">
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -169,7 +181,8 @@
     <div class="ag-info">
       <div>
         <h1 class="ag-info-title">Lignify<br>web page</h1>
-        <p class="ag-info-cat">UX / UI Designer / 2025-2026</p>
+        <p class="ag-info-cat">UX / UI Designer</p>
+        <p style="font-size:12px; color: rgba(0,0,0,0.45); margin: 0; letter-spacing:0.06em;">2025–2026</p>
       </div>
       <div class="ag-info-text">
         <p>Rediseño de la página web de <a href="https://lignify.com/" target="_blank" rel="noopener" style="color: #9e2a2b; text-decoration: underline;">Lignify</a>, una marca de cuero vegano con nueva sede en Barcelona. Buscamos reflejar la innovación de su producto y a la vez un toque moderno y lujoso. Ayudamos a esta marca a posicionarse como una de las principales marcas de cuero vegano en España.</p>
