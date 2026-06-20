@@ -784,6 +784,40 @@
 
       renderStand(currentStand);
       scheduleAutoplay();
+
+      const standOrder = Object.keys(standStates);
+      let swipeStartX = 0;
+      let swipeStartY = 0;
+
+      const gallerySection = document.querySelector(".gallery-copy");
+      const mainImageEl = document.querySelector("#gallery-main-image");
+
+      [gallerySection, mainImageEl].forEach((el) => {
+        if (!el) return;
+        el.addEventListener("touchstart", (e) => {
+          swipeStartX = e.touches[0].clientX;
+          swipeStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        el.addEventListener("touchend", (e) => {
+          const dx = e.changedTouches[0].clientX - swipeStartX;
+          const dy = e.changedTouches[0].clientY - swipeStartY;
+          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+
+          if (el === gallerySection) {
+            const idx = standOrder.indexOf(currentStand);
+            const nextIdx = dx < 0 ? Math.min(idx + 1, standOrder.length - 1) : Math.max(idx - 1, 0);
+            if (nextIdx !== idx) { renderStand(standOrder[nextIdx]); scheduleAutoplay(); }
+          } else {
+            const currentIndex = thumbs.findIndex((t) => t.classList.contains("is-active"));
+            const nextIndex = dx < 0
+              ? (currentIndex + 1) % thumbs.length
+              : (currentIndex - 1 + thumbs.length) % thumbs.length;
+            activateThumb(thumbs[nextIndex]);
+            scheduleAutoplay();
+          }
+        }, { passive: true });
+      });
     })();
   </script>
 
